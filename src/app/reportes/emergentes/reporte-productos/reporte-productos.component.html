@@ -1,0 +1,71 @@
+<div class="window-reporte" *ngIf="reportesProductos" id="reporte">
+  <div class="window-reporte__tittle">
+    <div [routerLink]="['../']"><i class="fa-solid fa-arrow-left-long"></i></div>
+    <div class="excel">
+      <a href="esto" id="linkDownload">Descargar Excel</a>
+    </div>
+    <h2>Reporte Productos</h2>
+    <h3>Periodo: {{fechaInicio}}..a..{{fechaFin}}</h3>
+  </div>
+  <div class="window-reporte__data">
+    <div>
+      <label for="usuarios">Usuarios: </label>
+      <b>{{usuario}}</b>
+    </div>
+    <div>
+      <label for="clientes">Clientes: </label>
+      <b>Todos</b>
+    </div>
+    <div>
+      <label for="departamento">Departamentos: </label>
+      <b>Todos</b>
+    </div>
+    <div>
+      <label for="articulo">Articulos: </label>
+      <b>Todos</b>
+    </div>
+  </div>
+  <div class="window-reporte__table">
+    <table >
+      <tr>
+        <th>Usuario</th>
+        <th *ngIf="ventaActivo == 'true'; else compraActivo">Cliente</th>
+        <ng-template #compraActivo>
+          <th>Provedor</th>
+        </ng-template>
+        <th>Codigo</th>
+        <th>Descripcion</th>
+        <th>Departamento</th>
+        <th>Categoria</th>
+        <th>Cantidad</th>
+        <th>PrecioU.</th>
+        <th>Importe</th>
+      </tr>
+      <tr *ngFor="let reporteProducto of reportesProductos">
+        <td>{{reporteProducto.username}}</td>
+        <td>{{reporteProducto.cliente}}</td>
+        <td>{{reporteProducto.codigo}}</td>
+        <td>{{reporteProducto.nombre}}</td>
+        <td>{{reporteProducto.departamento}}</td>
+        <td>{{reporteProducto.categoria}}</td>
+        <td>{{reporteProducto.cantidad}}</td>
+        <td>{{reporteProducto.precio}}</td>
+        <td>{{reporteProducto.importe}}</td>
+      </tr>
+    </table>
+  </div>
+  <div class="window-reporte__table-totales" >
+    <table>
+      <tr>
+        <th *ngIf="ventaActivo == 'true'; else totalCompra">Total Ventas</th>
+        <ng-template #totalCompra>
+          <th>Total Compras</th>
+        </ng-template>
+      </tr>
+      <tr>
+        <td>${{totalVenta}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+

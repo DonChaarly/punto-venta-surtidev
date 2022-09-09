@@ -1,0 +1,15 @@
+<div class="container_login">
+  <form class="form-login">
+    <div class="form-login__icon">
+      <img src="assets/logo_tienda.png" alt="Logo Tienda">
+      <p>La Surtidora</p>
+    </div>
+    <div class="form-login__data">
+      <input type="text" [(ngModel)]="usuario.username" name="user" id="user" placeholder="Usuario" autocomplete="off" #inputUser>
+    </div>
+    <div class="form-login__data">
+      <input type="password" [(ngModel)]="usuario.password" name="password" id="password" placeholder="Contraseña" autocomplete="off">
+    </div>
+    <button type="submit" value="Ingresar" (click)="login()">Ingresar</button>
+  </form>
+</div>

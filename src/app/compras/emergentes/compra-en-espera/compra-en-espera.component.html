@@ -1,0 +1,37 @@
+<div class="window-popup">
+
+  <div class="window-popup__inwait">
+    <div class="window-popup__header">
+      <i class="fa-solid fa-rectangle-xmark" [routerLink]="['../']"></i>
+    </div>
+    <h3> En Espera</h3>
+    <div>
+      <input class="listener" type="text" name="inwait-window" id="inwait-window" value="" onfocus="this.select()" #inputInWait (keyup)="eventoKey($event)" autocomplete="off">
+    </div>
+    <div class="window-popup__table">
+      <table>
+        <tr>
+          <th>Fecha</th>
+          <th>Provedor</th>
+          <th>No. Productos</th>
+          <th>Total</th>
+        </tr>
+        <tr *ngFor="let compra of compras; let i = index" id="trinp{{i}}" (click)="siguienteFoco(i)" (dblclick)="dobleClick()">
+          <td >{{compra.fecha}}
+            <input type="text" id="inp{{i}}" class="listener" name ="{{compra.idCompras}}" value="{{i}}" autocomplete="off"
+                (focus)="seleccionarFila($event)"
+                (blur)="deseleccionarFila($event)"
+                (keyup)="inputKeypress($event, i)">
+          </td>
+          <td>{{compra.provedor.nombre}}</td>
+          <td>{{cantidadProductos(compra.articulos)}}</td>
+          <td class="precio">{{compra.total}}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="window-popup__buttons">
+      <input type="submit" value="Seleccionar" role="button" (click)="seleccionarVenta()">
+      <input type="button" value="Cancelar" [routerLink]="['../']"  >
+    </div>
+  </div>
+</div>

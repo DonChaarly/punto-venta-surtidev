@@ -1,0 +1,170 @@
+.contaniner-reportes{
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+}
+.container-reportes__header{
+  display: grid;
+  grid-template-rows: 90px 80px;
+}
+/*--------------------------- HEADER SUPERIOR  -------------------------*/
+.header__title{
+  padding: 20px 35px;
+  height: auto;
+  background-color: var(--red);
+
+  display: flex;
+  justify-content: space-around;
+  justify-items: center;
+  overflow: hidden;
+}
+.header__title-back{
+  flex-grow: 1;
+  position: relative;
+}
+.header__title-back i{
+  padding: 7px 30px 7px 20px;
+  height: fit-content;
+  width: fit-content;
+  font-size: 30px;
+  background-color: var(--blue-light);
+  color: var(--gray-light);
+  border-radius: 10px;
+  position: absolute;
+  box-shadow: 0 0 4px var(--black);
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.header__title-back i:hover{
+  font-size: 35px;
+}
+
+.header__title img{
+  object-fit: contain;
+  flex-grow: .2;
+}
+.header__title p{
+  flex-grow: .5;
+  margin: auto;
+  font-family: var(--font-icono);
+  color: var(--gray-light);
+  font-size: 30px;
+}
+.header__title h2{
+  flex-grow:  4;
+  text-align: center;
+  margin: auto;
+  font-family: var(--font-principal);
+  color: var(--gray-light);
+  font-size: 50px;
+}
+
+/*-------------------------- HEADER NAV  -------------------------------*/
+.container-reportes__header > nav{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.container-reportes__nav{
+  height: 70px;
+  width: 100%;
+  padding: 5px;
+  background-color: var(--blue-light);
+  object-fit: cover;
+  color: var(--gray-light);
+  font-family: var(--font-text);
+  font-size: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  border-bottom: 3px solid var(--blue-strong);
+
+}
+.container-reportes__nav i{
+  font-size: 30px;
+  margin-right: 10px;
+}
+.container-reportes__nav--active{
+  height: 70px;
+  width: 100%;
+  padding: 5px;
+  background-color: var(--white);
+  object-fit: cover;
+  color: var(--blue-light);
+  font-family: var(--font-text);
+  font-weight: 800;
+  font-size: 30px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  border-top: 3px solid var(--blue-strong) ;
+  border-right: 3px solid var(--blue-strong) ;
+  border-left: 3px solid var(--blue-strong) ;
+}
+.container-reportes__nav--active i{
+  font-size: 30px;
+  margin-right: 10px;
+}
+
+/*--------------------------- REPORTES DATA------------------------*/
+
+.article-reportes{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows:  70px 70px 1fr;
+  justify-items: center;
+  align-items: center ;
+  font-size: 30px;
+  font-family: var(--font-text);
+  margin-top: 10px;
+}
+.article-reportes__date1, .article-reportes__date2, .article-reportes__cajas, .article-reportes__departament, .article-reportes__client, .article-reportes__product{
+  width:80%;
+}
+.article-reportes input, .article-reportes select{
+  width:50%;
+  border: 3px solid var(--blue-strong);
+  border-radius: 7px;
+  padding: 5px;
+}
+
+.article-reportes__button{
+  grid-column: 1 /span 2;
+  margin-top: 10%;
+  width: 30%;
+  height: 80%;
+  background-color: var(--blue-light);
+  color: var(--white);
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 7px var(--black);
+  cursor: pointer;
+  transition-property: width, height;
+  transition-duration: .3s;
+}
+.article-reportes__button:hover{
+  width: 32%;
+  height: 90%;
+}
+
+/*------------------------------VENTANA EMERGENTE-----------------------------*/
+.window-popup, .window-popup-sale{
+  background-color: var(--gray-transparent);
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+}
+
+

@@ -1,0 +1,57 @@
+<div class="window-popup" *ngIf="venta">
+  <form class="window-popup__done"  (submit)="abrirConfirmar()">
+    <div class="window-popup__header">
+      <i class="fa-solid fa-rectangle-xmark"  [routerLink]="['../']" ></i>
+    </div>
+    <div class="window-popup__done-data">
+      <div>
+        <label>Cliente: </label>
+        <input type="text" name="client-sale" id="client-sale" [(ngModel)]="venta.cliente.nombre"  disabled>
+      </div>
+      <div>
+        <label>Fecha: </label>
+        <input type="date" name="date-sale" id="date-sale" [(ngModel)]="venta.fecha"   disabled>
+      </div>
+      <div>
+        <label>Cajero: </label>
+        <input type="text" name="cajero-sale" id="cajero-sale" [(ngModel)]="venta.usuario.username" disabled>
+      </div>
+      <div>
+        <label>Folio: </label>
+        <input type="text" name="folio-sale" id="folio-sale" [(ngModel)]="venta.folio" disabled>
+      </div>
+    </div>
+    <div class="window-popup__done-total">
+      <h3>Total</h3>
+      <div>
+        <b>$</b>
+        <input type="text" name="total-sale" id="total-sale" [(ngModel)]="venta.total" disabled autocomplete="off">
+      </div>
+    </div>
+    <div class="window-popup__done-change">
+      <div>
+        <p>Recibido</p>
+        <div class="window-popup_donde-change-taken">
+          <b>$</b>
+          <input class="blueStrong" type="number" name="taken-sale" id="taken-sale" [(ngModel)]="takenSale" onfocus="this.select()" #inputTaken (keyup)="eventoKey($event)" step="0.50" autocomplete="off">
+        </div>
+      </div>
+      <div>
+        <p>Cambio</p>
+        <div>
+          <b>$</b>
+          <input type="text" name="change-sale" id="change-sale" value="{{calcularCambio()}}" disabled #inputChange autocomplete="off">
+        </div>
+      </div>
+    </div>
+    <div class="window-popup__buttons">
+      <input type="submit" value="Guardar" role="button">
+      <input type="button" value="Cancelar"  [routerLink]="['../']"  >
+    </div>
+  </form>
+</div>
+
+
+<router-outlet></router-outlet>
+
+

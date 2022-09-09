@@ -1,0 +1,170 @@
+<form autocomplete="off">
+  <div class="container-ventas" *ngIf="listo && venta.usuario && empresa">
+    <!--Cabecero del pagina-->
+    <header class="container-ventas__header">
+
+      <div class="header__title">
+
+        <div class="header__title-back">
+          <a [routerLink]="['/menu']"><i class="fa-solid fa-arrow-left-long"></i></a>
+        </div>
+        <h2>Punto de venta</h2>
+        <img src="assets/logo_tienda.png" alt="Logo Tienda">
+        <p>La Surtidora</p>
+
+      </div>
+      <!----------------------BARRA DE BOTONES------------------------->
+      <nav>
+
+        <div (click)="buscarProducto()">
+          <i class="fa-solid fa-magnifying-glass" ></i>
+          <p>Buscar (Enter)</p>
+        </div>
+        <div (click)="eliminarArticulo()">
+          <i class="fa-solid fa-rectangle-xmark" ></i>
+          <p>Eliminar (Delete)</p>
+        </div>
+        <div (click)="cobrarVenta()" *ngIf="rol.realiarVenta">
+          <i class="fa-solid fa-cash-register"></i>
+          <p>Cobrar (Esc)</p>
+        </div>
+        <div (click)="cambiarPrecio()" *ngIf="rol.cambiarPrecio">
+          <i class="fa-solid fa-circle-dollar-to-slot"></i>
+          <p>Cambiar Precio (/)</p>
+        </div>
+        <div (click)="cambiarCantidad()">
+          <i class="fa-solid fa-boxes-stacked"></i>
+          <p>Cambiar Cant. (*)</p>
+        </div>
+        <div (click)="ventaEnEspera()">
+          <i class="fa-solid fa-right-to-bracket"></i>
+          <p>En espera </p>
+        </div>
+        <div (click)="abrirEnEspera()">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <p>Buscar en Espera </p>
+        </div>
+
+      </nav>
+
+    </header>
+    <!---------------------------SECCION PRINCIPAL----------------------------------->
+    <article class="container-ventas__article">
+      <!--Seccion de datos-->
+      <section class="article-data">
+
+        <div class="article-data__superior">
+          <div class="article-data__superior-client">
+            <label for="client">Cliente: </label>
+            <select name="client" id="client" [(ngModel)]="cliente" (change)="cambiarCliente()">
+              <option value="0" selected>Publico General</option>
+              <option *ngFor="let cliente of clientes" value="{{cliente.idClientes}}">{{cliente.nombre}}</option>
+            </select>
+          </div>
+          <div class="article-data__superior-folio">
+            <label for="folio">Folio: </label>
+            <input type="text" name="folio" id="folio" [(ngModel)]="venta.folio" disabled>
+          </div>
+          <div class="article-data__superior-date">
+            <label for="date">Fecha: </label>
+            <input type="date" name="date" id="date" [(ngModel)]="venta.fecha" disabled>
+          </div>
+        </div>
+
+        <div class="article-data__inferior">
+          <div class="article-data__inferior-key">
+            <label for="key">Codigo: </label>
+            <input type="text" name="key" id="key" [(ngModel)]="key" (keyup)="encontrarArticulos($event)" autofocus #inputKey onfocus="this.select()" autocomplete="off">
+          </div>
+          <!--<div class="article-data__inferior-product">
+            <label for="product">Producto</label>
+            <input type="text" name="product" id="product" disabled [(ngModel)]="coincidence">
+
+          </div>-->
+        </div>
+
+
+      </section>
+
+      <!--Seccion de la tabla-->
+      <section class="article-products">
+
+        <div class="article-products__table">
+          <table>
+            <tr>
+              <th>Cantidad </th>
+              <th>Pruducto </th>
+              <th>Precio U. </th>
+              <th>Total</th>
+            </tr>
+            <tr *ngFor="let articuloDetalles of detallesventasarticulos; let i = index" id="trinput{{i}}" (click)="siguienteFoco(i)" (dblclick)="dobleClick(i)" >
+              <td>{{articuloDetalles.cantidad}}
+                <input type="text" id="input{{i}}" name="{{i}}" class="listener" value="{{i}}" autocomplete="off"
+                (focus)="seleccionarFila($event)"
+                (blur)="deseleccionarFila($event)"
+                (keyup)="inputKeypress($event, i)">
+              </td>
+              <td>{{articuloDetalles.articulo.nombre}}</td>
+              <td>{{articuloDetalles.precioUnitario}}
+                <input *ngIf="articuloDetalles.articulo.precio2 != 0" class="priceActive" id="inputprice1{{i}}" type="button" value="1" (click)="cambiarPrecioUnitario(i, true)">
+                <input *ngIf="articuloDetalles.articulo.precio2 != 0" class ="" id="inputprice2{{i}}" type="button" value="2" (click)="cambiarPrecioUnitario(i, false)">
+              </td>
+              <td>{{articuloDetalles.importe}}</td>
+            </tr>
+          </table>
+        </div>
+
+      </section>
+      <section class="article-total">
+        <div class="article-total__cajero">
+          <label for="cajero">Cajero: </label>
+          <input type="text" name="cajero" id="cajero" [(ngModel)]="venta.usuario.username" disabled>
+        </div>
+        <div class="article-total__total">
+          <label for="total">Total: </label>
+          <input type="text" name="total" id="total" value="${{total()}}" disabled>
+        </div>
+      </section>
+    </article>
+
+
+    <div id="imprimirEsto" style="display: none;">
+
+      <div style="text-align: center;">{{empresa.nombre}}</div>
+      <div style="text-align: center;">{{empresa.direccion}}</div>
+      <div style="text-align: center;">{{empresa.telefono}}</div>
+      <div>No. Ticket {{venta.folio}}</div>
+      <div>Fecha: {{venta.fecha}}    Hora: {{fecha.getHours()}}:{{fecha.getMinutes()}}:{{fecha.getSeconds()}}</div>
+      <hr>
+      <table style="padding-right: 3px;">
+        <tr>
+          <th>Cant.</th>
+          <th>Descripcion</th>
+          <th>PrcioU.</th>
+          <th>Imp</th>
+        </tr>
+        <tr *ngFor="let articuloDetalles of detallesventasarticulos; let i = index">
+          <td>{{articuloDetalles.cantidad}}</td>
+          <td>{{recortarString(articuloDetalles.articulo.nombre)}}</td>
+          <td>{{articuloDetalles.precioUnitario}}</td>
+          <td>{{articuloDetalles.importe}}</td>
+        </tr>
+      </table>
+      <br>
+      <div style="text-align: right; padding-right: 30px;">Total: {{total()}}</div>
+      <div style="text-align: right; padding-right: 30px;">Efective: {{efectivo}}</div>
+      <div style="text-align: right; padding-right: 30px;">Cambio: {{cambio}}</div>
+      <div style="text-align: center;">Caja: {{venta.caja.nombre}}</div>
+      <div style="text-align: center;">Cliente: {{venta.cliente.nombre}}</div>
+      <div style="text-align: center;">Cajero: {{venta.usuario.username}}</div>
+    </div>
+
+
+
+  </div>
+</form>
+<!----------------VENTANAS EMERGENTES---------------------------------------->
+<router-outlet></router-outlet>
+
+
+

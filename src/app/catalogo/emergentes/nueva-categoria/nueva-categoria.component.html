@@ -1,0 +1,28 @@
+<form (submit)="guardarCambios()" [noValidate]="false">
+  <div class="window-popup" >
+    <div class="window-popup__extra-category">
+      <div class="window-popup__header">
+        <i class="fa-solid fa-rectangle-xmark" [routerLink]="['../']"></i>
+      </div>
+      <div class="category-departament">
+        <label for="departament">Departamento:</label>
+        <div>
+          <select name="departament" id="extra-category-departament" [(ngModel)]="departamento" (change)="cambiarDepartamento()" required>
+            <option *ngFor="let departamento of departamentos; let i = index" value="{{i}}">{{departamento.nombre}}</option>
+          </select>
+          <i class="fas fa-plus-circle" [routerLink]="['./nuevo-departamento']"></i>
+        </div>
+      </div>
+      <div class="category-category">
+        <label for="category">Nueva Categoria:</label>
+        <input type="text" name="category" id="new-category" [(ngModel)]="categoria.nombre" required autocomplete="off">
+      </div>
+      <div class="window-popup__buttons">
+        <input type="submit" value="Guardar" role="button" >
+        <input type="button" value="Cancelar" [routerLink]="['../']" >
+      </div>
+    </div>
+
+  </div>
+</form>
+<router-outlet></router-outlet>

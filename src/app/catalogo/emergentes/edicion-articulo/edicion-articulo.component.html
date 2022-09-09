@@ -1,0 +1,100 @@
+<form (submit)="guardarCambios()" [noValidate]="false">
+  <div class="window-popup">
+    <div class="window-popup__edit" *ngIf="articulo" >
+      <div class="window-popup__header">
+        <div class="window-popup__header-print">
+          Imprimir Codigo
+        </div>
+        <div class="window-popup__header-title">
+          Detalles Articulo
+        </div>
+        <i class="fa-solid fa-rectangle-xmark" [routerLink]="['../']"></i>
+      </div>
+      <div class="window-popup__edit-key">
+        <label for="key">Codigo: </label>
+        <input type="text" name="key" id="key-edit" value="{{articulo.codigo}}" [(ngModel)]="articulo.codigo" required autocomplete="off">
+      </div>
+      <div class="window-popup__edit-name">
+        <label for="name">Nombre: </label>
+        <input type="text" name="name" id="name-edit" value="{{articulo.nombre}}" [(ngModel)]="articulo.nombre" required autocomplete="off">
+      </div>
+      <div class="window-popup__edit-category">
+        <label for="category">Categoria: </label>
+        <select name="category" id="category-edit" [(ngModel)]="categoria" (change)="cambiarCategoria()" >
+          <option *ngFor="let categoria of categorias; let i = index" value="{{i}}">{{categoria.nombre}}</option>
+        </select>
+
+        <i class="fas fa-plus-circle" [routerLink]="['./nueva-categoria']"></i>
+        <label for="departament">Departamento: </label>
+        <input *ngIf="articulo.categoria" type="text" name="departament" id="departament-edit" value="{{articulo.categoria.departamento.nombre}}" disabled class="inputDisabled" autocomplete="off">
+
+      </div>
+      <div class="window-popup__edit-ult-price">
+        <label for="ult-price">Ult. Precio compra: </label>
+        <input type="number" name="ult-price" id="ult-price-edit" value="{{articulo.ultimoPrecioCompra}}" [(ngModel)]="articulo.ultimoPrecioCompra" autocomplete="off" step="0.01">
+      </div>
+      <div class="window-popup__edit-existencias">
+        <label for="existencias">Existencias: </label>
+        <input type="number" name="existencias" id="existencias-edit" value="{{articulo.existencias}}" [(ngModel)]="articulo.existencias" autocomplete="off" step="0.01">
+      </div>
+      <div class="window-popup__edit-find-prov">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <b>Provedores: </b>
+        <input type="text" name="find-prov-edit" id="find-prov-edit" autocomplete="off" >
+      </div>
+      <div class="window-popup__edit-prom-price">
+        <label for="prom-price">Precio prom. compra: </label>
+        <input type="number" name="prom-price" id="prom-price-edit" value="{{precioPromedio()}}" disabled class="inputDisabled" autocomplete="off" step="0.01">
+      </div>
+      <div class="window-popup__edit-precio-modif">
+        <label for="precio-modif">Precio modificable: </label>
+        <input type="checkbox" name="precio-modif" id="precio-modif-edit"  [(ngModel)]="articulo.modificacionPrecio" autocomplete="off">
+      </div>
+      <div class="window-popup__edit-prov-table">
+        <table>
+          <tr>
+            <th>Clave</th>
+            <th>Nombre</th>
+            <th>Ult. precio</th>
+          </tr>
+          <tr *ngFor="let provedor of articulo.provedores">
+            <td>{{provedor.provedor.codigo}}<input type="text" id="listener-prov" class="listener" value="1" autocomplete="off"></td>
+            <td>{{provedor.provedor.nombre}}</td>
+            <td>{{provedor.ultPrecio}}</td>
+          </tr>
+
+        </table>
+      </div>
+      <div class="window-popup__edit-inven-min">
+        <label for="inven-min">Inventario min: </label>
+        <input type="number" name="inven-min" id="inven-min-edit" value="{{articulo.inventarioMin}}" [(ngModel)]="articulo.inventarioMin" autocomplete="off" step="0.01">
+      </div>
+      <div class="window-popup__edit-inven-max">
+        <label for="inven-min">Inventario max: </label>
+        <input type="number" name="inven-max" id="inven-max-edit" value="{{articulo.inventarioMax}}" [(ngModel)]="articulo.inventarioMax" autocomplete="off" step="0.01">
+      </div>
+      <div class="window-popup__edit-profit1">
+        <label for="profit1">% Ganancia 1</label>
+        <input type="number" name="profit1" id="profit1-edit" value="{{ganancia1()}}" disabled class="inputDisabled" autocomplete="off" step="0.01">
+      </div>
+      <div class="window-popup__edit-profit2">
+        <label for="profit2">% Ganancia 2</label>
+        <input type="number" name="profit2" id="profit2-edit" value="{{ganancia2()}}" disabled class="inputDisabled" autocomplete="off" step="0.01">
+      </div>
+      <div class="window-popup__edit-price1">
+        <label for="price1">Precio 1</label>
+        <input type="number" name="price1" id="price1-edit" value="{{articulo.precio1}}" [(ngModel)]="articulo.precio1" required autocomplete="off" step="0.01">
+      </div>
+      <div class="window-popup__edit-price2">
+        <label for="price2">Precio 2</label>
+        <input type="number" name="price2" id="price2-edit" value="{{articulo.precio2}}" [(ngModel)]="articulo.precio2" autocomplete="off" step="0.01">
+      </div>
+      <div class="window-popup__buttons">
+        <input type="submit" value="Guardar" role="button" (submit)="guardarCambios()">
+        <input type="button" value="Cancelar" [routerLink]="['../']" >
+      </div>
+    </div>
+
+  </div>
+</form>
+<router-outlet></router-outlet>

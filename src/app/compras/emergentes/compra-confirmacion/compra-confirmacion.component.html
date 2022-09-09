@@ -1,0 +1,16 @@
+<div class="window-popup">
+  <div class="window-popup__sale">
+    <div class="window-popup__header">
+      <i class="fa-solid fa-rectangle-xmark" [routerLink]="['../']"></i>
+    </div>
+    <h3> Desea realizar la compra?</h3>
+    <div class="window-popup__sale-input">
+      <input type="number" name="sale-window" id="sale-window"  onfocus="this.select()" (keyup)="eventoKey($event)" #saleWindow autocomplete="off">
+    </div>
+    <div class="window-popup__buttons">
+      <input type="button" value="Guardar" role="button" (click)="realizarCompra()">
+      <input type="button" value="Cancelar" [routerLink]="['../']" >
+    </div>
+  </div>
+</div>
+

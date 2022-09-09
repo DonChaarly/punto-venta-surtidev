@@ -1,0 +1,47 @@
+<form (submit)="guardarUsuario()" [noValidate]="false">
+
+  <div class="window-popup" *ngIf="usuario && empleados && roles">
+
+    <div class="window-popup__users window-popup__topic" (keyup)="eventokey($event)">
+      <div class="window-popup__header">
+        <div class="window-popup__header-title">
+          Detalles Usuario
+        </div>
+        <i class="fa-solid fa-rectangle-xmark" [routerLink]="['../']"></i>
+      </div>
+      <div class="window-big-icon">
+        <i class="fa-solid fa-users"></i>
+      </div>
+      <div class="window-popup__topic-data">
+        <div class="password-user">
+          <label for="username">Nombre: </label>
+          <input type="text" name="username" id="username-user" [(ngModel)]="usuario.username" autocomplete="off" required #inputKey>
+        </div>
+        <div class="employee-user">
+          <label for="employee">Empleado: </label>
+          <select name="employee" id="employee-user" [(ngModel)]="empleado" required>
+            <option *ngFor="let empleado of empleados; let i = index" value="{{i}}">{{empleado.nombre}}</option>
+          </select>
+        </div>
+        <div class="rol-user">
+          <label for="rol">Rol: </label>
+          <select name="rol" id="rol-user" [(ngModel)]="rol" required>
+            <option *ngFor="let rol of roles; let i = index" value="{{i}}">{{rol.nombre}}</option>
+          </select>
+        </div>
+        <div class="password-user">
+          <label for="password">Constraseña: </label>
+          <input type="password" name="password" id="password-user" [(ngModel)]="usuario.password" autocomplete="off" required (keyup)="cambioPassword()" onfocus="this.select()">
+        </div>
+        <div class="gone" id="passwordConfirm">
+          <label for="password-confirm">Confirmar constraseña: </label>
+          <input type="password" name="password-confirm" id="password-confirm-user" [(ngModel)]="password2" autocomplete="off" >
+        </div>
+      </div>
+      <div class="window-popup__buttons">
+        <input type="submit" value="Guardar" role="button">
+        <input type="button" value="Cancelar" [routerLink]="['../']" >
+      </div>
+    </div>
+  </div>
+</form>

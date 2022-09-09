@@ -1,0 +1,17 @@
+<form (submit)="guardarCambios()" [noValidate]="false">
+  <div class="window-popup" >
+    <div class="window-popup__extra-departament">
+      <div class="window-popup__header">
+        <i class="fa-solid fa-rectangle-xmark" [routerLink]="['../']"></i>
+      </div>
+      <div class="departament-departament">
+        <label for="departament"> Nuevo departamento:</label>
+        <input type="text" name="departament" id="new-departament" [(ngModel)]="departamento.nombre" required autocomplete="off">
+      </div>
+      <div class="window-popup__buttons">
+        <input type="submit" value="Guardar" role="button" >
+          <input type="button" value="Cancelar" [routerLink]="['../']" >
+      </div>
+    </div>
+  </div>
+</form>

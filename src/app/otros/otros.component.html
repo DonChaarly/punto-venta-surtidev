@@ -1,0 +1,155 @@
+<div class="contaniner-otros">
+  <header class="container-otros__header">
+
+    <div class="header__title">
+
+      <div class="header__title-back">
+        <a [routerLink]="['/menu']"><i class="fa-solid fa-arrow-left-long"></i></a>
+      </div>
+      <h2>Otros</h2>
+      <img src="assets/logo_tienda.png" alt="Logo Tienda">
+      <p>La Surtidora</p>
+
+    </div>
+    <!----------------BARRA DE NAVEGACION-------------------------->
+    <nav>
+      <div class="container-otros__nav--active" id="clientes" (click)="cambiarVentana('clientes')">
+        <i class="fa-solid fa-user-tie"></i>
+        <p>Clientes</p>
+      </div>
+      <div class="container-otros__nav" id="provedores" (click)="cambiarVentana('provedores')">
+        <i class="fas fa-people-carry"></i>
+        <p>Provedores</p>
+      </div>
+      <div class="container-otros__nav" id="departamentos" (click)="cambiarVentana('departamentos')">
+        <i class="fa-solid fa-building"></i>
+        <p>Departamentos</p>
+      </div>
+      <div class="container-otros__nav" id="categorias" (click)="cambiarVentana('categorias')">
+        <i class="fa-solid fa-box-archive"></i>
+        <p>Categorias</p>
+      </div>
+    </nav>
+    <!------BUTONES DE ACCION-->
+    <div class="container-otros__buttons">
+      <div (click)="crearObjeto()">
+        <p>Agregar</p>
+        <i class="fa-solid fa-circle-plus"></i>
+      </div>
+      <div (click)="abrirDetalles()">
+        <p>Editar</p>
+        <i class="fa-solid fa-pen-to-square"></i>
+      </div>
+      <div (click)="eliminarObjeto()">
+        <p>Eliminar</p>
+        <i class="fa-solid fa-circle-xmark"></i>
+      </div>
+    </div>
+  </header>
+  <article>
+
+    <!----------------------   VARIOS CLIENTES  --------------------------------->
+    <div class="visible" id="divclientes">
+      <section class=" section__data">
+        <label for="otros-client">Cliente: </label>
+        <input type="text" name="otros-client" id="otros-client" [(ngModel)]="key" autocomplete="off" (keyup)="eventoKeyPrincipal($event)">
+
+      </section>
+      <section>
+        <div class="section__table">
+          <div class="section__table-head" >
+            <b>Clave</b>
+            <b>Nombre</b>
+            <b>Telefono</b>
+          </div>
+          <div class="section__table-data" *ngFor="let cliente of clientes; let i = index" id="trinputclientes{{i}}" (click)="siguienteFoco(i)" (dblclick)="dobleClick(i)" >
+            <p>{{cliente.codigo}}
+              <input class="listener" type="text" id="inputclientes{{i}}" name="{{i}}" class="listener" value="{{i}}" autocomplete="off"
+              (focus)="seleccionarFila($event)"
+              (blur)="deseleccionarFila($event)"
+              (keyup)="inputKeypress($event, i)">
+            </p>
+            <p>{{cliente.nombre}}</p>
+            <p>{{cliente.telefono}}</p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!----------------------   VARIOS PROVEDORES  --------------------------------->
+    <div class="gone" id="divprovedores">
+      <section class="section__data">
+        <label for="otros-prov">Provedor: </label>
+        <input type="text" name="otros-prov" id="otros-prov"  [(ngModel)]="key" autocomplete="off" (keyup)="eventoKeyPrincipal($event)">
+      </section>
+      <section>
+        <div class="section__table">
+          <div class="section__table-head">
+            <b>Clave</b>
+            <b>Nombre</b>
+            <b>Telefono</b>
+          </div>
+          <div class="section__table-data" *ngFor="let provedor of provedores; let i = index" id="trinputprov{{i}}" (click)="siguienteFoco(i)" (dblclick)="dobleClick(i)" >
+            <p>{{provedor.codigo}}
+              <input class="listener" type="text" id="inputprov{{i}}" name="{{i}}" class="listener" value="{{i}}" autocomplete="off"
+              (focus)="seleccionarFila($event)"
+              (blur)="deseleccionarFila($event)"
+              (keyup)="inputKeypress($event, i)">
+            </p>
+            <p>{{provedor.nombre}}</p>
+            <p>{{provedor.telefono}}</p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!----------------------   VARIOS DEPARTAMENTOS  --------------------------------->
+    <div class="gone" id="divdepartamentos">
+      <section class="section__data">
+        <label for="otros-department">Departamento: </label>
+        <input type="text" name="otros-department" id="otros-department"  [(ngModel)]="key" autocomplete="off" (keyup)="eventoKeyPrincipal($event)">
+      </section>
+      <section>
+        <div class="section__table">
+          <div class="section__table-head">
+            <b>Nombre</b>
+          </div>
+          <div class="section__table-data" *ngFor="let departamento of departamentos; let i = index" id="trinputdepart{{i}}" (click)="siguienteFoco(i)" (dblclick)="dobleClick(i)" >
+            <p>{{departamento.nombre}}
+              <input class="listener" type="text" id="inputdepart{{i}}" name="{{i}}" class="listener" value="{{i}}" autocomplete="off"
+              (focus)="seleccionarFila($event)"
+              (blur)="deseleccionarFila($event)"
+              (keyup)="inputKeypress($event, i)">
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!----------------------   VARIOS CATEGORIAS  --------------------------------->
+    <div class="gone" id="divcategorias">
+      <section class="section__data">
+        <label for="otros-category">Categoria: </label>
+        <input type="text" name="otros-category" id="otros-category"  [(ngModel)]="key" autocomplete="off" (keyup)="eventoKeyPrincipal($event)">
+      </section>
+      <section>
+        <div class="section__table">
+          <div class="section__table-head">
+            <b>Nombre</b>
+            <b>Departamento</b>
+          </div>
+          <div class="section__table-data" *ngFor="let categoria of categorias; let i = index" id="trinputcategory{{i}}" (click)="siguienteFoco(i)" (dblclick)="dobleClick(i)" >
+            <p>{{categoria.nombre}}
+              <input class="listener" type="text" id="inputcategory{{i}}" name="{{i}}" class="listener" value="{{i}}" autocomplete="off"
+              (focus)="seleccionarFila($event)"
+              (blur)="deseleccionarFila($event)"
+              (keyup)="inputKeypress($event, i)">
+            </p>
+            <p>{{categoria.departamento.nombre}}</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </article>
+
+</div>
+<router-outlet></router-outlet>
+

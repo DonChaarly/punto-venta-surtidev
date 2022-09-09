@@ -1,0 +1,103 @@
+
+<div class="window-popup" *ngIf="(venta || compra) && empresa">
+  <div class="window-popup__details">
+    <div class="window-popup__header">
+      <div class="window-popup__header-title">
+        Detalles Articulo
+      </div>
+      <i class="fa-solid fa-rectangle-xmark" [routerLink]="['../']"></i>
+    </div>
+    <div class="window-popup__details-data">
+      <div>
+        <label>Cliente: </label>
+        <input type="text" name="client-sale" id="client-sale" [(ngModel)]="cliente"  disabled>
+      </div>
+      <div>
+        <label>Fecha: </label>
+        <input type="date" name="date-sale" id="date-sale" [(ngModel)]="fecha"   disabled>
+      </div>
+      <div>
+        <label>Cajero: </label>
+        <input type="text" name="cajero-sale" id="cajero-sale" [(ngModel)]="usuario" disabled>
+      </div>
+      <div>
+        <label>Folio: </label>
+        <input type="text" name="folio-sale" id="folio-sale" [(ngModel)]="folio" disabled>
+      </div>
+
+    </div>
+    <div class="window-popup__details-table">
+      <table *ngIf="ventasActivo == 'true'; else compraActivo">
+        <tr>
+          <th>Cantidad </th>
+          <th>Pruducto </th>
+          <th>Precio U. </th>
+          <th>Total</th>
+        </tr>
+        <tr *ngFor="let articuloDetalles of detallesventasarticulos; let i = index" >
+          <td>{{articuloDetalles.cantidad}}</td>
+          <td>{{articuloDetalles.articulo.nombre}}</td>
+          <td>{{articuloDetalles.precioUnitario}}</td>
+          <td>{{articuloDetalles.importe}}</td>
+        </tr>
+      </table>
+      <ng-template #compraActivo>
+        <table>
+          <tr>
+            <th>Cantidad </th>
+            <th>Pruducto </th>
+            <th>Precio C. </th>
+            <th>Total</th>
+          </tr>
+          <tr *ngFor="let articuloDetalles of detallescomprasarticulos; let i = index" >
+            <td>{{articuloDetalles.cantidad}}</td>
+            <td>{{articuloDetalles.articulo.nombre}}</td>
+            <td>{{articuloDetalles.precioCompra}}</td>
+            <td>{{articuloDetalles.importe}}</td>
+          </tr>
+        </table>
+      </ng-template>
+
+
+    </div>
+    <div class="window-popup__details-total">
+      <div class="button">
+        <input *ngIf="ventasActivo" type="button" value="Imprimir Ticket" (click)="imprSelec()">
+      </div>
+      <div class="total">
+        <label for="total">Total: </label>
+        <input type="text" name="total" id="total" value="${{total}}" disabled>
+      </div>
+    </div>
+
+  </div>
+  <div id="imprimir" style="display: none;" *ngIf="ventasActivo && venta.caja">
+
+    <div style="text-align: center;">{{empresa.nombre}}</div>
+    <div style="text-align: center;">{{empresa.direccion}}</div>
+    <div style="text-align: center;">{{empresa.telefono}}</div>
+    <div>No. Ticket {{venta.folio}}</div>
+    <div>Fecha: {{venta.fecha}}</div>
+    <hr>
+    <table style="padding-right: 3px;">
+      <tr>
+        <th>Cant.</th>
+        <th>Descripcion</th>
+        <th>PrcioU.</th>
+        <th>Imp</th>
+      </tr>
+      <tr *ngFor="let articuloDetalles of detallesventasarticulos; let i = index">
+        <td>{{articuloDetalles.cantidad}}</td>
+        <td>{{recortarString(articuloDetalles.articulo.nombre)}}</td>
+        <td>{{articuloDetalles.precioUnitario}}</td>
+        <td>{{articuloDetalles.importe}}</td>
+      </tr>
+    </table>
+    <br>
+    <div style="text-align: right; padding-right: 30px;">Total: {{total}}</div>
+    <div style="text-align: center;">Caja: {{venta.caja.nombre}}</div>
+    <div style="text-align: center;">Cliente: {{venta.cliente.nombre}}</div>
+    <div style="text-align: center;">Cajero: {{venta.usuario.username}}</div>
+  </div>
+
+</div>

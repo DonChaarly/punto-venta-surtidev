@@ -1,0 +1,127 @@
+<div class="container-catalogo">
+  <!--Cabecero de la pagina-->
+  <header class="container-catalogo__header">
+
+    <div class="header__title">
+      <div class="header__title-back">
+        <a [routerLink]="['/menu']"><i class="fa-solid fa-arrow-left-long"></i></a>
+      </div>
+      <h2>Catalogo</h2>
+      <img src="assets/logo_tienda.png" alt="Logo Tienda">
+      <p>La Surtidora</p>
+
+    </div>
+    <!----------------------BARRA DE BOTONES------------------------->
+    <nav>
+
+      <div (click)="agregarArticulo()" *ngIf="rol.agregarArticulo">
+        <i class="fa-solid fa-circle-plus"></i>
+        <p>Agregar (Teclar +)</p>
+      </div>
+      <div (click)="eliminarArticulo()" *ngIf="rol.eliminarArticulo">
+        <i class="fa-solid fa-circle-xmark"></i>
+        <p>Eliminar (Teclar -)</p>
+      </div>
+      <div (click)="editarArticulo()" *ngIf="rol.editarArticulo">
+        <i class="fa-solid fa-pen-to-square"></i>
+        <p>Editar (Teclar *)</p>
+      </div>
+      <div style="display: none;" *ngIf="rol.exportarArticulos">
+        <i class="fa-solid fa-right-to-bracket"></i>
+        <p>Importar (F4)</p>
+      </div>
+      <div  style="display: none;" *ngIf="rol.importarArticulos">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <p>Exportar (F5)</p>
+      </div>
+
+    </nav>
+
+  </header>
+  <!---------------------------SECCION PRINCIPAL----------------------------------->
+  <article class="container-catalogo__article">
+    <!--Seccion de datos-->
+    <section class="article-data">
+
+      <div class="article-data__key">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" name="key" id="key"  autocomplete="off" [(ngModel)]="key" (keyup)="encontrarArticulos($event)" autofocus #inputKey>
+      </div>
+      <div class="article-data__findby">
+        <label for="findby">Buscar por: </label>
+        <select name="findby" id="findby" [(ngModel)]="findby">
+          <option value="key" selected>Codigo</option>
+          <option value="description">Descripcion</option>
+        </select>
+      </div>
+      <div class="article-data__departament">
+        <label for="departament">Departamento: </label>
+        <select name="departament" id="departament" [(ngModel)]="departamento" (change)="encontrarArticulos($event)">
+          <option value="0" selected>Todos</option>
+          <option *ngFor="let departamento of departamentos" value="{{departamento.idDepartamentos}}">{{departamento.nombre}}</option>
+        </select>
+      </div>
+      <div class="article-data__category">
+        <label for="filter">Categoria: </label>
+        <select name="category" id="category" [(ngModel)]="categoria  " (change)="encontrarArticulos($event)">
+          <option value="0" selected>Todos</option>
+          <option *ngFor="let categoria of categorias" value="{{categoria.idCategorias}}">{{categoria.nombre}}</option>
+        </select>
+      </div>
+
+    </section>
+    <!--Seccion de la tabla-->
+    <section class="article-products">
+
+      <div class="article-products__table" >
+        <table  id="tabla">
+          <tr>
+            <th>Codigo</th>
+            <th>Descripcion</th>
+            <th>Departamento</th>
+            <th>Categoria</th>
+            <th>Precio Compra</th>
+            <th>Precio Venta</th>
+          </tr>
+
+          <tr *ngFor="let articulo of articulos; let i = index" id="trinput{{i}}" (click)="siguienteFoco(i)" (dblclick)="dobleClick()">
+            <td >{{articulo.codigo}}
+              <input type="text" id="input{{i}}" class="listener" name ="{{articulo.idArticulos}}" value="{{i}}" autocomplete="off"
+                  (focus)="seleccionarFila($event)"
+                  (blur)="deseleccionarFila($event)"
+                  (keyup)="inputKeypress($event, i)">
+            </td>
+            <td>{{articulo.nombre}}</td>
+            <td *ngIf="articulo.categoria; else sinDepartamento">{{articulo.categoria.departamento.nombre}}</td>
+            <ng-template #sinDepartamento><td></td></ng-template>
+            <td *ngIf="articulo.categoria; else sinCategoria">{{articulo.categoria.nombre}}</td>
+            <ng-template #sinCategoria><td></td></ng-template>
+            <td class="precio">{{articulo.ultimoPrecioCompra}}</td>
+            <td class="precio">{{articulo.precio1}}</td>
+          </tr>
+
+        </table>
+      </div>
+
+    </section>
+    <section class="article-paginator">
+      <div class="" id="arrowLeft" (click)="masMenosUnaPagina(true)">
+        <i class="fa-solid fa-circle-arrow-left"></i>
+      </div>
+      <div>
+        <input type="number" [(ngModel)]="page" (keyup)="cambiarPagina($event, page)">
+        <input type="number" [(ngModel)]="totalPages" disabled>
+      </div>
+      <div class="arrowActive" id="arrowRight" (click)="masMenosUnaPagina(false)">
+        <i class="fa-solid fa-circle-arrow-right"></i>
+      </div>
+
+    </section>
+
+  </article>
+
+
+
+</div>
+<router-outlet></router-outlet>
+

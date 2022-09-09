@@ -1,0 +1,35 @@
+<div class="container-menu" >
+  <header class="header">
+    <img src="assets/logo_tienda.png" alt="Logo Tienda">
+    <h2 class="header__title">MENU PRINCIPAL</h2>
+    <button class="header__config" [routerLink]="['./configuraciones']" *ngIf="rol.seccionConfiguraciones; else divExtra"><i class="fa-solid fa-gear"></i></button>
+    <ng-template #divExtra><button class="header__config"></button></ng-template>
+
+  </header>
+  <article class="main">
+    <div class="consultas" [routerLink]="['./consultas']" *ngIf="rol.seccionConsultas">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <p>Consultas</p>
+    </div>
+    <div class="catalogo" [routerLink]="['./catalogo']" *ngIf="rol.seccionCatalogo">
+      <i class="fa-solid fa-book"></i>
+      <p>Catalogo</p>
+    </div>
+    <div class="ventas" [routerLink]="['./ventas']" *ngIf="rol.seccionVentas">
+      <i class="fa-solid fa-cart-shopping"></i>
+      <p>Ventas</p>
+    </div>
+    <div class="reportes" [routerLink]="['./reportes']" *ngIf="rol.seccionReportes">
+      <i class="fa-solid fa-file-lines"></i>
+      <p>Reportes</p>
+    </div>
+    <div class="compras" [routerLink]="['./compras']" *ngIf="rol.seccionCompras">
+      <i class="fa-solid fa-truck-moving"></i>
+      <p>Compras</p>
+    </div>
+    <div class="otros" [routerLink]="['./otros']" *ngIf="rol.seccionOtros">
+      <i class="fa-solid fa-people-group"></i>
+      <p>Otros</p>
+    </div>
+  </article>
+</div>

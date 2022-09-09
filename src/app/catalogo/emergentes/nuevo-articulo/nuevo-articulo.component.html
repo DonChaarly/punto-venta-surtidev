@@ -1,0 +1,79 @@
+<form (submit)="crearArticulo()" [noValidate]="false">
+  <div class="window-popup" >
+    <div class="window-popup__new" *ngIf="articulo">
+      <div class="window-popup__header">
+        <div class="window-popup__header-title">
+          Nuevo Articulo
+        </div>
+        <i class="fa-solid fa-rectangle-xmark" [routerLink]="['../']"></i>
+      </div>
+      <div class="window-popup__new-key">
+        <label for="key">Codigo: </label>
+        <input type="text" name="key" id="key-new" [(ngModel)]="articulo.codigo" required autocomplete="off">
+      </div>
+      <div class="window-popup__new-name">
+        <label for="name">Nombre: </label>
+        <input type="text" name="name" id="name-new" [(ngModel)]="articulo.nombre" required autocomplete="off">
+      </div>
+      <div class="window-popup__new-category">
+        <label for="category">Categoria: </label>
+        <select name="category" id="category-edit" [(ngModel)]="categoria" (change)="cambiarCategoria()" >
+          <option *ngFor="let categoria of categorias; let i = index" value="{{i}}">{{categoria.nombre}}</option>
+        </select>
+        <i class="fas fa-plus-circle" [routerLink]="['./nueva-categoria']"></i>
+        <label for="departament">Departamento: </label>
+        <input type="text" name="departament" id="departament-new" *ngIf="articulo.categoria" value="{{articulo.categoria.departamento.nombre}}" autocomplete="off">
+      </div>
+      <div class="window-popup__new-buy-price">
+        <label for="buy-price">Precio de compra: </label>
+        <input type="number" name="buy-price" id="buy-price-new" [(ngModel)]="articulo.ultimoPrecioCompra" autocomplete="off">
+      </div>
+      <div class="window-popup__new-prov">
+        <i class="fa-solid fa-magnifying-glass" ></i>
+        <b>Provedor: </b>
+        <select name="prov" id="prov-new" [(ngModel)]="provedor" (change)="cambiarProvedor()">
+          <option *ngFor="let provedor of provedores; let i = index" value="{{i}}">{{provedor.nombre}}</option>
+        </select>
+        <i class="fas fa-plus-circle" [routerLink]="['./nuevo-provedor']"></i>
+      </div>
+      <div class="window-popup__new-inven-max">
+        <label for="inven-max">Inventario Max: </label>
+        <input type="number" name="inven-max" id="inven-max-new" [(ngModel)]="articulo.inventarioMax" autocomplete="off">
+      </div>
+      <div class="window-popup__new-inven-min">
+        <label for="inven-min">Inventario Min: </label>
+        <input type="number" name="inven-min" id="inven-min-new" [(ngModel)]="articulo.inventarioMin" autocomplete="off">
+      </div>
+      <div class="window-popup__new-existencias">
+        <label for="existencias">Existencias iniciales: </label>
+        <input type="number" name="existencias" id="existencias-new" [(ngModel)]="articulo.existencias" autocomplete="off">
+      </div>
+      <div class="window-popup__new-modif-price">
+        <label for="modif-price">Precio Modificable: </label>
+        <input type="checkbox" name="modif-price" id="modif-price-new" [(ngModel)]="articulo.modificacionPrecio" autocomplete="off">
+      </div>
+      <div class="window-popup__new-profit1">
+        <label for="profit1">% Ganancia 1</label>
+        <input type="number" name="profit1" id="profit1-new" value="{{ganancia1()}}" disabled class="inputDisabled" autocomplete="off">
+      </div>
+      <div class="window-popup__new-profit2">
+        <label for="profit2">% Ganancia 2</label>
+        <input type="number" name="profit2" id="profit2-new" value="{{ganancia2()}}" disabled class="inputDisabled" autocomplete="off">
+      </div>
+      <div class="window-popup__new-price1">
+        <label for="price1">Precio 1</label>
+        <input type="number" name="price1" id="price1-new" [(ngModel)]="articulo.precio1" required autocomplete="off">
+      </div>
+      <div class="window-popup__new-price2">
+        <label for="price2">Precio 2</label>
+        <input type="number" name="price2" id="price2-new" [(ngModel)]="articulo.precio2" autocomplete="off">
+      </div>
+      <div class="window-popup__buttons">
+        <input type="submit" value="Guardar" role="button" >
+        <input type="button" value="Cancelar" [routerLink]="['../']" >
+      </div>
+    </div>
+
+  </div>
+</form>
+<router-outlet></router-outlet>

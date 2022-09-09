@@ -1,0 +1,101 @@
+<form autocomplete="off">
+
+  <div class="contaniner-reportes" *ngIf="usuarios && clientes && departamentos">
+    <!------------Cabecera de la pagina-->
+    <header class="container-reportes__header">
+
+      <div class="header__title">
+
+        <div class="header__title-back">
+          <a [routerLink]="['/menu']"><i class="fa-solid fa-arrow-left-long"></i></a>
+        </div>
+        <h2>Reportes</h2>
+        <img src="assets/logo_tienda.png" alt="Logo Tienda">
+        <p>La Surtidora</p>
+
+      </div>
+      <!----------------------BARRA DE BOTONES------------------------->
+      <nav>
+
+        <div class="container-reportes__nav--active" id="ventas" (click)="cambiarEstiloActivo($event)">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <p>Ventas</p>
+        </div>
+        <div class="container-reportes__nav" id="compras" (click)="cambiarEstiloActivo($event)">
+          <i class="fa-solid fa-truck-moving"></i>
+          <p>Compras</p>
+        </div>
+
+      </nav>
+
+    </header>
+    <!---------------------------SECCION PRINCIPAL----------------------------------->
+    <article class="article-reportes">
+      <div class="article-reportes__date1" *ngIf="rol.cambiarFechaReporte; else sinFecha1">
+        <label for="reportes-date1">Fecha de inicio: </label>
+        <input type="date" name="reportes-date1" id="reportes-date1" [(ngModel)]="fechaInicio">
+      </div>
+      <div class="article-reportes__date2" *ngIf="rol.cambiarFechaReporte; else sinFecha2">
+        <label for="reportes-date1">Fecha de fin: </label>
+        <input type="date" name="reportes-date2" id="reportes-date2" [(ngModel)]="fechaFin">
+      </div>
+      <ng-template #sinFecha1>
+        <div class="article-reportes__date1" >
+          <label for="reportes-date1">Fecha de inicio: </label>
+          <input type="date" name="reportes-date1" id="reportes-date1" [(ngModel)]="fechaInicio" disabled>
+        </div>
+      </ng-template>
+      <ng-template #sinFecha2>
+        <div class="article-reportes__date2" >
+          <label for="reportes-date1">Fecha de fin: </label>
+          <input type="date" name="reportes-date2" id="reportes-date2" [(ngModel)]="fechaFin" disabled>
+        </div>
+      </ng-template>
+
+
+      <div class="article-reportes__cajas">
+        <label for="reportes-caja">Usuario: </label>
+        <select name="reportes-caja" id="reportes-caja" [(ngModel)]="usuarioSelec">
+          <option value="all" selected>Todos</option>
+          <option *ngFor="let usuario of usuarios" value="{{usuario.username}}">{{usuario.username}}</option>
+        </select>
+      </div>
+      <div class="article-reportes__departament">
+        <label for="reportes-departament">Departamento: </label>
+        <select name="reportes-departament" id="reportes-departament" [(ngModel)]="departamentoSelec">
+          <option value="all" selected>Todos</option>
+          <option *ngFor="let departamento of departamentos" value="{{departamento.nombre}}">{{departamento.nombre}}</option>
+        </select>
+      </div>
+      <div class="article-reportes__client" *ngIf="ventasActivo == true; else comprasActivo">
+        <label for="reportes-departament">Cliente: </label>
+        <select name="reportes-client" id="reportes-client" [(ngModel)]="clienteSelec">
+          <option value="all" selected>Todos</option>
+          <option *ngFor="let cliente of clientes" value="{{cliente.nombre}}">{{cliente.nombre}}</option>
+        </select>
+      </div>
+      <ng-template #comprasActivo>
+        <div class="article-reportes__client">
+          <label for="reportes-departament">Provedores: </label>
+          <select name="reportes-client" id="reportes-client" [(ngModel)]="clienteSelec">
+            <option value="all" selected>Todos</option>
+            <option *ngFor="let provedor of provedores" value="{{provedor.nombre}}">{{provedor.nombre}}</option>
+          </select>
+        </div>
+      </ng-template>
+
+      <div class="article-reportes__product">
+        <label for="reportes-product">Producto: </label>
+        <input type="text" name="reportes-product" id="reportes-product" [(ngModel)]="productoSelec" (focus)="ventanaBuscarProductos()" autocomplete="off">
+      </div>
+      <div class="article-reportes__button" (click)="verReporte()">
+        <h3>Ver reporte</h3>
+      </div>
+    </article>
+  </div>
+</form>
+<router-outlet></router-outlet>
+
+
+
+

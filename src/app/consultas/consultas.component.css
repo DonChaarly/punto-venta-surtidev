@@ -1,0 +1,259 @@
+.contaniner-consultas{
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+}
+.container-consultas__header{
+  display: grid;
+  grid-template-rows: 90px 80px;
+}
+/*--------------------------- HEADER SUPERIOR  -------------------------*/
+.header__title{
+  padding: 20px 35px;
+  height: auto;
+  background-color: var(--red);
+
+  display: flex;
+  justify-content: space-around;
+  justify-items: center;
+  overflow: hidden;
+}
+.header__title-back{
+  flex-grow: 1;
+  position: relative;
+}
+.header__title-back i{
+  padding: 7px 30px 7px 20px;
+  height: fit-content;
+  width: fit-content;
+  font-size: 30px;
+  background-color: var(--blue-light);
+  color: var(--gray-light);
+  border-radius: 10px;
+  position: absolute;
+  box-shadow: 0 0 4px var(--black);
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.header__title-back i:hover{
+  font-size: 35px;
+}
+
+.header__title img{
+  object-fit: contain;
+  flex-grow: .2;
+}
+.header__title p{
+  flex-grow: .5;
+  margin: auto;
+  font-family: var(--font-icono);
+  color: var(--gray-light);
+  font-size: 30px;
+}
+.header__title h2{
+  flex-grow:  4;
+  text-align: center;
+  margin: auto;
+  font-family: var(--font-principal);
+  color: var(--gray-light);
+  font-size: 50px;
+}
+
+/*-------------------------- HEADER NAV  -------------------------------*/
+.container-consultas__header > nav{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.container-consultas__nav{
+  height: 70px;
+  width: 100%;
+  padding: 5px;
+  background-color: var(--blue-light);
+  object-fit: cover;
+  color: var(--gray-light);
+  font-family: var(--font-text);
+  font-size: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  border-bottom: 3px solid var(--blue-strong);
+
+}
+.container-consultas__nav i{
+  font-size: 30px;
+  margin-right: 10px;
+}
+.container-consultas__nav--active{
+  height: 70px;
+  width: 100%;
+  padding: 5px;
+  background-color: var(--white);
+  object-fit: cover;
+  color: var(--blue-light);
+  font-family: var(--font-text);
+  font-weight: 800;
+  font-size: 30px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  border-top: 3px solid var(--blue-strong) ;
+  border-right: 3px solid var(--blue-strong) ;
+  border-left: 3px solid var(--blue-strong) ;
+}
+.container-consultas__nav--active i{
+  font-size: 30px;
+  margin-right: 10px;
+}
+
+/*--------------------------- consultas DATA------------------------*/
+
+.article-consultas{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows:  70px 70px 50px 1fr;
+  justify-items: center;
+  align-items: center ;
+  font-size: 30px;
+  font-family: var(--font-text);
+  margin-top: 10px;
+}
+.article-consultas__date1, .article-consultas__date2, .article-consultas__cajas, .article-consultas__findby, .article-consultas__finder{
+  width:80%;
+}
+.article-consultas > div > input, .article-consultas select{
+  width:50%;
+  border: 3px solid var(--blue-strong);
+  border-radius: 7px;
+  padding: 5px;
+}
+
+.article-consultas__finder{
+  grid-column: 1 / span 2;
+  justify-self: start;
+  margin-left: 60px;
+  width:90%;
+}
+
+/*-------------------------- TABLE-------------------------*/
+.article-consultas__table{
+  grid-column: 1 / span 2;
+  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  margin: 5px 25px;
+  width: 95%;
+  height: 40vh;
+  border: 3px solid var(--blue-strong);
+  overflow: auto;
+  border-radius: 7px;
+}
+table{
+  width: 100%;
+}
+
+tr{
+  height:40px;
+}
+th{
+  text-align: start;
+  background-color: var(--blue-strong);
+  color: var(--gray-light);
+  position: sticky;
+  top: 0;
+  right: 0;
+  padding-left: 20px ;
+  width: 20%;
+
+}
+
+td{
+  background-color: var(--gray-light);
+  padding-left: 20px;
+  font-size: 25px;
+  position: relative;
+}
+
+.listener{
+  position: absolute;
+  max-width: 0px;
+  border: none;
+}
+
+/*------------------------------VENTANA EMERGENTE-----------------------------*/
+.window-popup, .window-popup-sale{
+  background-color: var(--gray-transparent);
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+}
+
+.active td{
+  background-color: var(--blue-light) ;
+}
+
+.delete{
+  background-color: var(--red);
+  color: var(--white);
+  font-size: 20px;
+  width: 30%;
+  height: 70%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.delete:hover{
+  transform: scale(1.1);
+}
+
+/*--------------------------------  SECTION PAGINATOR --------------------------*/
+
+.article-paginator{
+  grid-column: 1 / span 2;
+  display: flex;
+  margin: auto;
+}
+.article-paginator input{
+  width: 80px;
+  font-size: 23px;
+  height: 50px;
+  text-align: center;
+  border-radius: 5px;
+  border: 3px solid var(--blue-strong);
+  margin: 0 5px;
+
+}
+.article-paginator input[type=number]::-webkit-inner-spin-button,
+.article-paginator input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.article-paginator i{
+  color: var(--gray-transparent);
+  font-size: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.article-paginator .arrowActive i:hover{
+  transform: scale(1.1);
+}
+
+.article-paginator .arrowActive i{
+  color: var(--blue-light);
+  cursor: pointer;
+}
+

@@ -1,0 +1,274 @@
+.contaniner-otros{
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+
+}
+.container-otros__header{
+  display: grid;
+  grid-template-rows: 90px 80px;
+}
+/*--------------------------- HEADER SUPERIOR  -------------------------*/
+.header__title{
+  padding: 20px 35px;
+  height: auto;
+  background-color: var(--red);
+
+  display: flex;
+  justify-content: space-around;
+  justify-items: center;
+  overflow: hidden;
+}
+.header__title-back{
+  flex-grow: 1;
+  position: relative;
+}
+.header__title-back i{
+  padding: 7px 30px 7px 20px;
+  height: fit-content;
+  width: fit-content;
+  font-size: 30px;
+  background-color: var(--blue-light);
+  color: var(--gray-light);
+  border-radius: 10px;
+  position: absolute;
+  box-shadow: 0 0 4px var(--black);
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.header__title-back i:hover{
+  font-size: 35px;
+}
+
+.header__title img{
+  object-fit: contain;
+  flex-grow: .2;
+}
+.header__title p{
+  flex-grow: .5;
+  margin: auto;
+  font-family: var(--font-icono);
+  color: var(--gray-light);
+  font-size: 30px;
+}
+.header__title h2{
+  flex-grow:  4;
+  text-align: center;
+  margin: auto;
+  font-family: var(--font-principal);
+  color: var(--gray-light);
+  font-size: 50px;
+}
+
+/*-------------------------- HEADER NAV  -------------------------------*/
+.container-otros__header > nav{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.container-otros__nav{
+  height: 70px;
+  width: 100%;
+  padding: 5px;
+  background-color: var(--blue-light);
+  object-fit: cover;
+  color: var(--gray-light);
+  font-family: var(--font-text);
+  font-size: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  border-bottom: 3px solid var(--blue-strong);
+
+}
+.container-otros__nav:hover{
+  font-size: 25px;
+}
+.container-otros__nav i{
+  font-size: 30px;
+  margin-right: 10px;
+}
+.container-otros__nav--active{
+  height: 70px;
+  width: 100%;
+  padding: 5px;
+  background-color: var(--white);
+  object-fit: cover;
+  color: var(--blue-light);
+  font-family: var(--font-text);
+  font-weight: 800;
+  font-size: 30px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  border-top: 3px solid var(--blue-strong) ;
+  border-right: 3px solid var(--blue-strong) ;
+  border-left: 3px solid var(--blue-strong) ;
+}
+.container-otros__nav--active i{
+  font-size: 30px;
+  margin-right: 10px;
+}
+
+/*--------------  BUTTONS --------------------*/
+
+.container-otros__buttons{
+  display: flex;
+  padding: 15px 30px;
+  width: 60%;
+  height: 70px;
+  font-size: 20px;
+  font-family: var(--font-text);
+  color: var(--white);
+}
+.container-otros__buttons div{
+  display: flex;
+  margin: 0 20px;
+  background-color: var(--blue-light);
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+  box-shadow: 0 0 5px var(--black);
+  border-radius: 7px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.container-otros__buttons div:hover{
+  outline: 4px solid var(--blue-strong);
+}
+.container-otros__buttons i{
+  font-size: 25px;
+  margin-left: 10px;
+}
+
+
+/*------------------  SECTION DATA  ------------------*/
+.section__data{
+  display: flex;
+  padding: 15px 30px;
+  height: 90px;
+  font-size: 30px;
+  font-family: var(--font-text);
+  align-items: center;
+}
+.section__data label{
+  margin-left: 10px;
+}
+.section__data input, .section__data select{
+  width: 30%;
+  margin-left: 20px;
+  padding: 5px;
+  border-radius: 7px;
+  border: 2px solid var(--blue-strong);
+}
+
+/*--------------------  SECTION TABLE -------------------------*/
+.section__table{
+  width: 96%;
+  height: 45vh;
+  overflow: auto;
+  border: 3px solid var(--blue-strong);
+  margin: 10px 2%;
+  border-radius: 7px;
+  font-family: var(--font-text);
+  display: grid;
+  grid-template-rows: 50px;
+  grid-auto-rows: 40px;
+}
+.section__table-head, .section__table-data{
+  display: flex;
+  padding: 2px;
+  justify-content: space-evenly;
+  color: var(--white);
+  font-size: 25px;
+  position: sticky;
+  top: 0;
+  right: 0;
+}
+.section__table-data--active{
+  display: flex;
+  padding: 2px;
+  justify-content: space-evenly;
+  color: var(--black);
+  font-size: 25px;
+  position: static;
+}
+
+.section__table-data{
+  color: var(--black);
+  position: static;
+}
+
+.section__table-head b{
+  width: 100%;
+  background-color: var(--blue-strong);
+  margin: 0px 1px;
+  padding: 7px 0px 7px 12px ;
+  position: sticky;
+}
+.section__table-data p{
+  width: 100%;
+  background-color: var(--gray-light);
+  margin: 0px 1px;
+  padding: 5px 0px 5px 12px ;
+  transition-property: background-color, color;
+
+}
+.section__table-data--active p{
+  width: 100%;
+  background-color: var(--blue-light);
+  margin: 0px 1px;
+  padding: 5px 0px 5px 12px ;
+  transition-property: background-color, color;
+
+}
+
+
+/*---------------------CLIENTES----------------------*/
+.section-clients{
+  display: block;
+}
+
+/*---------------------PROVEDORES----------------------*/
+.section-prov{
+  display: none;
+}
+
+/*------------------- DEPARTAMENTOS-------------------*/
+
+.section-department{
+  display: none;
+}
+
+/*------------------- CATEGORIAS ----------------------------*/
+.section-category{
+  display: none;
+}
+
+
+.gone{
+  display: none;
+}
+.visible{
+  display: block;
+}
+
+.listener{
+  position: absolute;
+  width: 0px;
+  border: none;
+}
+
+
+
+
+

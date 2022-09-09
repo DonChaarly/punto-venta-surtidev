@@ -1,0 +1,141 @@
+
+.container-menu{
+  height: 100vh;
+  width: 100%;
+  background-color: var(--gray-light);
+
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 153px repeat(8, 1fr);
+}
+
+/*--------------- HEADER ------------------------*/
+.header{
+  background-color: var(--gray);
+
+  grid-row: 1 / span 1;
+  grid-column: 1/ span 6;
+  display: flex;
+}
+.header img{
+  filter: drop-shadow(0 0 2px var(--black));
+  padding: 20px;
+
+  flex-grow: 1;
+  object-fit: contain;
+}
+.header__title{
+  font-family: var(--font-principal);
+  font-size: 50px;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: var(--red);
+  color: var(--gray-light);
+
+  align-self: center;
+  flex-grow: 4 ;
+}
+.header__config{
+  background-color: inherit;
+  border: none;
+  width: 90px;
+
+  flex-grow: 1;
+}
+.header__config i{
+  font-size: 40px;
+  color: var(--gray-light);
+  cursor: pointer;
+}
+.header i:hover{
+  font-size: 50px;
+  filter: drop-shadow(0 0 15px #000);
+}
+
+/*---------------------  MAIN  -------------------------*/
+.main{
+  grid-row: 2 / span 8;
+  grid-column: 1/ span 6;
+  display: flex;
+}
+.main div{
+  background-color: var(--blue-strong);
+  margin: 70px 15px;
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: 0 0 15px #000;
+  cursor: pointer;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  flex-grow: 1;
+  transition: padding .3s;
+}
+.main div:hover{
+  background-color: var(--blue-light);
+  padding: 20px;
+}
+
+.main div i{
+  width: fit-content;
+  height: fit-content;
+  font-size: 90px;
+  color: var(--white);
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+}
+.main div > p{
+  width: 80px;
+  height: fit-content;
+  font-size: 70px;
+  font-family: var(--font-principal);
+  color: var(--white);
+  transform: rotate(270deg);
+
+
+  grid-column: 2/3;
+  justify-self: end;
+  align-self: end;
+}
+.consultas p{
+  padding-left: 50%;
+
+}
+.catalogo p{
+  padding-left: 80%;
+  padding-top: 10%;
+
+}
+.ventas p{
+  padding-left: 90%;
+  padding-top: 30%;
+
+
+}
+.reportes p{
+  padding-left: 75%;
+  padding-top: 9%;
+
+}
+.compras p{
+  padding-left: 80%;
+  padding-top: 10%;
+
+}
+.otros p{
+  padding-left: 115%;
+  padding-top: 65%;
+}
+
+
+
+

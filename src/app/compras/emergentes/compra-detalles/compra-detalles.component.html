@@ -1,0 +1,47 @@
+<div class="window-popup">
+  <form class="window-popup__done" *ngIf="listo">
+      <div class="window-popup__header">
+        <i class="fa-solid fa-rectangle-xmark"  [routerLink]="['../']"></i>
+      </div>
+      <div class="window-popup__done-data">
+        <div>
+          <label>Provedor: </label>
+          <input type="text" name="prov-sale" id="prov-sale" [(ngModel)]="provedor"  disabled>
+        </div>
+        <div>
+          <label>Fecha: </label>
+          <input type="date" name="date-sale" id="date-sale" [(ngModel)]="fecha"  disabled>
+        </div>
+        <div>
+          <label>Cajero: </label>
+          <input type="text" name="cajero-sale" id="cajero-sale" [(ngModel)]="cajero" disabled>
+        </div>
+        <div>
+          <label>Folio: </label>
+          <input type="text" name="folio-sale" id="folio-sale"  [(ngModel)]="folio" disabled>
+        </div>
+      </div>
+      <div class="window-popup__done-total">
+        <h3>Total</h3>
+        <div>
+          <b>$</b>
+          <input type="number" name="total-sale" id="total-sale" [(ngModel)]="total"  disabled  >
+        </div>
+      </div>
+      <div class="window-popup__done-change">
+        <div>
+          <p>Efectivo</p>
+          <div class="window-popup_donde-change-taken">
+            <b>$</b>
+            <input type="number" name="taken-sale" id="taken-sale" autofocus onfocus="this.select()" (keyup)="eventoKey($event)" #inputEfectivo autocomplete="off">
+          </div>
+        </div>
+      </div>
+      <div class="window-popup__buttons">
+        <input type="submit" value="Guardar" role="button" (click)="abrirConfirmacion()">
+        <input type="button" value="Cancelar" [routerLink]="['../']" >
+      </div>
+  </form>
+</div>
+<router-outlet></router-outlet>
+

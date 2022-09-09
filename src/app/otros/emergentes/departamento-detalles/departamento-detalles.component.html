@@ -1,0 +1,22 @@
+<form (submit)="guardarDepartamento()" [noValidate]="false">
+  <div class="window-popup">
+    <div class="window-popup__department window-popup__topic" (keyup)="eventokey($event)">
+      <div class="window-popup__header">
+        <div class="window-popup__header-title">
+          Detalles departamento
+        </div>
+        <i class="fa-solid fa-rectangle-xmark" [routerLink]="['../']"></i>
+      </div>
+      <div class="window-popup__topic-data">
+        <div class="name-department">
+          <label for="name"> Nombre departamento: </label>
+          <input type="text" name="name" id="name-department" [(ngModel)]="departamento.nombre" autocomplete="off" #inputKey required>
+        </div>
+      </div>
+      <div class="window-popup__buttons">
+        <input type="submit" value="Guardar" role="button">
+        <input type="button" value="Cancelar" [routerLink]="['../']" >
+      </div>
+    </div>
+  </div>
+</form>

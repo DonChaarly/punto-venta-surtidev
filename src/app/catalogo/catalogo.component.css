@@ -1,0 +1,319 @@
+.container-catalogo{
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+}
+.container-catalogo__header{
+  flex-grow: .5;
+  display: grid;
+  grid-template-rows: 90px 1fr;
+}
+
+/*--------------------------- HEADER SUPERIOR-----------------------*/
+.header__title{
+  padding: 20px 35px;
+  height: auto;
+  background-color: var(--red);
+
+  display: flex;
+  justify-content: space-around;
+  justify-items: center;
+  overflow: hidden;
+}
+.header__title-back{
+  flex-grow: 1;
+  position: relative;
+}
+.header__title-back i{
+  padding: 7px 30px 7px 20px;
+  height: fit-content;
+  width: fit-content;
+  font-size: 30px;
+  background-color: var(--blue-light);
+  color: var(--gray-light);
+  border-radius: 10px;
+  position: absolute;
+  box-shadow: 0 0 4px var(--black);
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.header__title-back i:hover{
+  font-size: 35px;
+}
+
+.header__title img{
+  object-fit: contain;
+  flex-grow: .2;
+}
+.header__title p{
+  flex-grow: .5;
+  margin: auto;
+  font-family: var(--font-icono);
+  color: var(--gray-light);
+  font-size: 30px;
+}
+.header__title h2{
+  flex-grow:  4;
+  text-align: center;
+  margin: auto;
+  font-family: var(--font-principal);
+  color: var(--gray-light);
+  font-size: 50px;
+}
+
+/*-------------------------- HEADER NAV  -------------------------------*/
+.container-catalogo__header > nav{
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+  margin: 10px 20px;
+}
+nav > div{
+  height: 100px;
+  max-width: 100px;
+  border-radius: 10px;
+  margin-left: 10px;
+  padding: 5px;
+  background-color: var(--blue-light);
+  object-fit: cover;
+  color: var(--gray-light);
+  font-family: var(--font-text);
+  font-size: 17px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 0 5px #000;
+  overflow: hidden;
+
+}
+nav i{
+  font-size: 30px;
+  margin: 10px auto 5px;
+}
+nav > div:hover{
+  outline: 5px solid var(--blue-strong);
+}
+
+/*----------------------- MAIN ARTICLE -------------------------------*/
+.container-catalogo__article{
+  flex-grow: 5;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-text);
+}
+/*-----------------------   SECTION  DATA  --------------------------*/
+.article-data{
+  font-size: 20px;
+  display: flex;
+  margin: 0px 25px;
+  width: 95vw;
+}
+.article-data input{
+  border: 2px solid var(--blue-strong);
+  padding: 5px;
+  border-radius: 7px;
+  width: 90%;
+}
+
+
+.article-data__key{
+  display: flex;
+  font-size: 30px;
+  width: 60%;
+}
+.article-data__key i{
+  position: relative;
+  font-size: 40px;
+  margin-right: 20px;
+}
+.article-data__findby, .article-data__departament, .article-data__category {
+  margin-left: 5px ;
+}
+.article-data__findby select, .article-data__departament select, .article-data__category select {
+  width: 95%;
+  border-radius: 7px;
+  height: 38px;
+  border: 2px solid var(--blue-strong);
+
+}
+
+/*------------------------------- SECTION TABLE-------------------*/
+.article-products{
+  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  margin: 5px 25px;
+}
+.article-products__table{
+  width: 100%;
+  height: 50vh;
+  border: 3px solid var(--blue-strong);
+  overflow: auto;
+  border-radius: 7px;
+}
+table{
+  width: 100%;
+}
+
+tr{
+  height:40px;
+  cursor: pointer;
+}
+th{
+  text-align: start;
+  background-color: var(--blue-strong);
+  color: var(--gray-light);
+  position: sticky;
+  top: 0;
+  right: 0;
+  padding-left: 20px ;
+
+}
+.article-products__table th:nth-child(1){
+  width: 15%;
+}
+.article-products__table th:nth-child(2){
+  width: 40%;
+}
+.article-products__table th:nth-child(3){
+  width: 15%;
+}
+.article-products__table th:nth-child(4){
+  width: 5%;
+}
+.article-products__table th:nth-child(5){
+  width: 12.5%;
+}
+.article-products__table th:nth-child(6){
+  width: 12.5%;
+}
+td{
+  background-color: var(--gray-light);
+  padding-left: 20px;
+  font-size: 25px;
+}
+tr .precio{
+  text-align: right;
+  padding-right: 15px;
+}
+
+.active td{
+  background-color: var(--blue-light) ;
+}
+
+.listener{
+  position: absolute;
+  width: 0px;
+  border: none;
+}
+
+
+/*--------------------  SECTION TABLE -------------------------*/
+.section__table{
+  width: 96%;
+  height: 45vh;
+  overflow: auto;
+  border: 3px solid var(--blue-strong);
+  margin: 10px 2%;
+  border-radius: 7px;
+  font-family: var(--font-text);
+  display: grid;
+  grid-template-rows: 50px;
+  grid-auto-rows: 40px;
+}
+.section__table-head, .section__table-data{
+  display: flex;
+  padding: 2px;
+  color: var(--white);
+  font-size: 25px;
+  position: sticky;
+  justify-content: center;
+  top: 0;
+  right: 0;
+}
+.section__table-head b:nth-child(1), .section__table-data p:nth-child(1){
+  flex-grow: 1;
+}
+.section__table-head b:nth-child(2), .section__table-data p:nth-child(2){
+  flex-grow: 1;
+}
+.section__table-head b:nth-child(3), .section__table-data p:nth-child(3){
+  flex-grow: 1;
+}
+.section__table-head b:nth-child(4), .section__table-data p:nth-child(4){
+  flex-grow: 1;
+}
+.section__table-head b:nth-child(5), .section__table-data p:nth-child(5){
+  flex-grow: 1;
+}
+.section__table-head b:nth-child(6), .section__table-data p:nth-child(6){
+  flex-grow: 1;
+}
+.section__table-data{
+  color: var(--black);
+  position: static;
+}
+.section__table-data:hover p{
+
+  background-color: var(--blue-light);
+  color: var(--white);
+}
+.section__table-head b{
+  background-color: var(--blue-strong);
+  margin: 0px 1px;
+  padding: 7px 0px 7px 12px ;
+  position: sticky;
+}
+.section__table-data p{
+  background-color: var(--gray-light);
+  margin: 0px 1px;
+  padding: 5px 0px 5px 12px ;
+  transition-property: background-color, color;
+
+}
+
+/*--------------------------------  SECTION PAGINATOR --------------------------*/
+
+.article-paginator{
+  display: flex;
+  margin: auto;
+}
+.article-paginator input{
+  width: 80px;
+  font-size: 23px;
+  height: 50px;
+  text-align: center;
+  border-radius: 5px;
+  border: 3px solid var(--blue-strong);
+  margin: 0 5px;
+
+}
+.article-paginator input[type=number]::-webkit-inner-spin-button,
+.article-paginator input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.article-paginator i{
+  color: var(--gray-transparent);
+  font-size: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.article-paginator .arrowActive i:hover{
+  transform: scale(1.1);
+}
+
+.article-paginator .arrowActive i{
+  color: var(--blue-light);
+  cursor: pointer;
+}
+
+
+

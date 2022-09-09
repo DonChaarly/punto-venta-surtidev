@@ -1,0 +1,87 @@
+<form (submit)="guardarRol()" [noValidate]="false">
+
+  <div class="window-popup" *ngIf="rol">
+    <div class="window-popup__rols window-popup__topic" (keyup)="eventokey($event)">
+      <div class="window-popup__header">
+        <div class="window-popup__header-title">
+          Detalles Rol
+        </div>
+        <i class="fa-solid fa-rectangle-xmark" [routerLink]="['../']"></i>
+      </div>
+      <div class="window-popup__rols-data">
+        <div class="name-rol">
+          <label for="name-rol">Nombre: </label>
+          <input type="text" name="name-rol" id="name-rol" [(ngModel)]="rol.nombre" autocomplete="off"  #inputKey required>
+        </div>
+
+        <div class="catalogo-section">
+          <label for="catalogo-section">-Seccion Catalogo: </label>
+          <input type="checkbox" name="catalogo-section" id="catalogo-section" [(ngModel)]="rol.seccionCatalogo" autocomplete="off">
+          <div class="section-inside">
+            <label for="catalogo-setting1">Permitir agregar articulo: </label>
+            <input type="checkbox" name="catalogo-setting1" id="catalogo-setting1" [(ngModel)]="rol.agregarArticulo" autocomplete="off">
+            <label for="catalogo-setting2">Permitir eliminar articulo: </label>
+            <input type="checkbox" name="catalogo-setting2" id="catalogo-setting2" [(ngModel)]="rol.eliminarArticulo" autocomplete="off">
+            <label for="catalogo-setting3">Permitir editar articulo: </label>
+            <input type="checkbox" name="catalogo-setting3" id="catalogo-setting3" [(ngModel)]="rol.editarArticulo" autocomplete="off">
+            <label for="catalogo-setting4">Permitir exportar articulos: </label>
+            <input type="checkbox" name="catalogo-setting4" id="catalogo-setting4" [(ngModel)]="rol.exportarArticulos" autocomplete="off">
+            <label for="catalogo-setting5">Permitir importar articulos: </label>
+            <input type="checkbox" name="catalogo-setting5" id="catalogo-setting5" [(ngModel)]="rol.importarArticulos" autocomplete="off">
+          </div>
+        </div>
+
+        <div class="consultas-section">
+          <label for="consultas-section">-Seccion consultas: </label>
+          <input type="checkbox" name="consultas-section" id="consultas-section" [(ngModel)]="rol.seccionConsultas" autocomplete="off">
+          <div class="section-inside">
+            <label for="consultas-setting1">Permitir cambiar fecha de consulta: </label>
+            <input type="checkbox" name="consultas-setting1" id="consultas-setting1" [(ngModel)]="rol.cambiarFechaConsulta" autocomplete="off">
+            <label for="consultas-setting2">Permitir cancelar venta: </label>
+            <input type="checkbox" name="consultas-setting2" id="consultas-setting2" [(ngModel)]="rol.cancelarVenta" autocomplete="off">
+            <label for="consultas-setting3">Permitir cancelar compra: </label>
+            <input type="checkbox" name="consultas-setting3" id="consultas-setting3" [(ngModel)]="rol.cancelarCompra" autocomplete="off">
+          </div>
+        </div>
+
+        <div class="reportes-section">
+          <label for="catalogo-section">-Seccion reportes: </label>
+          <input type="checkbox" name="reportes-section" id="reportes-section" [(ngModel)]="rol.seccionReportes" autocomplete="off">
+          <div class="section-inside">
+            <label for="reportes-setting1">Permitir cambiar fecha de reporte: </label>
+            <input type="checkbox" name="reportes-setting1" id="reportes-setting1" [(ngModel)]="rol.cambiarFechaReporte" autocomplete="off">
+          </div>
+        </div>
+
+        <div class="ventas-section">
+          <label for="ventas-section">-Seccion Ventas: </label>
+          <input type="checkbox" name="ventas-section" id="ventas-section" [(ngModel)]="rol.seccionVentas" autocomplete="off">
+          <div class="section-inside">
+            <label for="ventas-setting1">Permitir realizar ventas: </label>
+            <input type="checkbox" name="ventas-setting1" id="ventas-setting1" [(ngModel)]="rol.realizarVenta" autocomplete="off">
+            <label for="ventas-setting2">Permitir cambiar precio: </label>
+            <input type="checkbox" name="ventas-setting2" id="ventas-setting2" [(ngModel)]="rol.cambiarPrecio" autocomplete="off">
+            <label for="ventas-setting3">Preguntar imprimir ticket: </label>
+            <input type="checkbox" name="ventas-setting3" id="ventas-setting3" [(ngModel)]="rol.preguntarImprimir" autocomplete="off">
+          </div>
+        </div>
+        <div class="compras-section">
+          <label for="compras-section">-Seccion compras: </label>
+          <input type="checkbox" name="compras-section" id="compras-section" [(ngModel)]="rol.seccionCompras" autocomplete="off">
+        </div>
+        <div class="configuraciones-section">
+          <label for="configuraciones-section">-Seccion configuraciones: </label>
+          <input type="checkbox" name="configuraciones-section" id="configuraciones-section" [(ngModel)]="rol.seccionConfiguraciones" autocomplete="off">
+        </div>
+        <div class="otros-section">
+          <label for="otros-section">-Seccion otros: </label>
+          <input type="checkbox" name="otros-section" id="otros-section" [(ngModel)]="rol.seccionOtros" autocomplete="off">
+        </div>
+      </div>
+      <div class="window-popup__buttons">
+        <input type="submit" value="Guardar" role="button">
+        <input type="button" value="Cancelar" [routerLink]="['../']" >
+      </div>
+    </div>
+  </div>
+</form>

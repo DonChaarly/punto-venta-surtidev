@@ -1,0 +1,161 @@
+.window-reporte {
+  width: 100vw;
+  height: 100vh;
+  padding: 30px;
+  font-family: var(--font-text);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 50px 80px 1fr 30px 80px;
+  position: absolute;
+  top: 0;
+  background-color: var(--white);
+}
+
+.window-reporte__tittle {
+  display: grid;
+  grid-template-columns: 100px 150px 1fr 1fr;
+}
+.window-reporte__tittle div{
+  border-radius: 3px;
+  background-color: var(--blue-light);
+  align-self: center;
+  width: 70px;
+  height: 30px;
+  border: 2px solid var(--black);
+  display: grid;
+  cursor: pointer;
+}
+.window-reporte__tittle .excel{
+  border-radius: 3px;
+  background-color: var(--green-excel);
+  align-self: center;
+  width: 120px;
+  height: 35px;
+  text-align: center;
+}
+.window-reporte__tittle a{
+  text-decoration: none;
+  align-self: center;
+  color: var(--white);
+}
+
+.window-reporte__tittle div i{
+  align-self: center;
+  justify-self: center;
+  color: var(--white);
+  font-size: 20px;
+
+}
+.window-reporte__tittle div:hover{
+  transform: scale(1.1);
+}
+.window-reporte__tittle h2 {
+  color: var(--blue-strong);
+  font-size: 40px;
+  overflow: hidden;
+}
+.window-reporte__tittle h3 {
+  color: var(--blue-light);
+  font-size: 20px;
+  text-align: right;
+  overflow: hidden;
+}
+
+.window-reporte__data {
+  display: grid;
+  grid-template-columns: 500px 500px;
+  grid-template-rows: 1fr 1fr;
+  font-size: 20px;
+}
+.window-reporte__data label {
+  color: var(--blue-strong);
+  font-weight: 800;
+}
+.window-reporte__data b {
+  overflow: hidden;
+  font-weight: 400;
+}
+
+
+.window-reporte__table table {
+  width: 100%;
+  table-layout:fixed;
+}
+.window-reporte__table-totales{
+  grid-row: 5 /span 1;
+  justify-self: end;
+  width: 30%;
+
+}
+.window-reporte__table-totales table{
+  width: 100%;
+}
+
+.window-reporte__table tr, .window-reporte__table-totales tr {
+  width: 100%;
+}
+.window-reporte__table th, .window-reporte__table-totales th {
+  font-size: 20px;
+  background-color: var(--blue-strong);
+  color: var(--gray-light);
+  text-align: center;
+  height: 30px;
+}
+.window-reporte__table td, .window-reporte__table-totales td {
+  font-size: 20px;
+  text-align: center;
+  height: 30px;
+  white-space: nowrap;
+  overflow: hidden;
+
+}
+.window-reporte__table tr:nth-child(even), .window-reporte__table-totales tr:nth-child(even){
+  background-color: var(--blue-pillow);
+}
+.window-reporte__table tr:nth-child(odd){
+  background-color: var(--white);
+}
+
+
+.window-reporte__table th:nth-child(1),
+.window-reporte__table td:nth-child(1) {
+  width: 9%;
+}
+.window-reporte__table th:nth-child(2),
+.window-reporte__table td:nth-child(2) {
+  width: 8%;
+}
+.window-reporte__table th:nth-child(3),
+.window-reporte__table td:nth-child(3) {
+  width: 10%;
+}
+.window-reporte__table th:nth-child(4),
+.window-reporte__table td:nth-child(4) {
+  width: 12%;
+}
+.window-reporte__table th:nth-child(5),
+.window-reporte__table td:nth-child(5) {
+  width: 17%;
+}
+.window-reporte__table th:nth-child(6),
+.window-reporte__table td:nth-child(6) {
+  width: 10%;
+}
+.window-reporte__table th:nth-child(7),
+.window-reporte__table td:nth-child(7) {
+  width: 10%;
+}
+.window-reporte__table th:nth-child(8),
+.window-reporte__table td:nth-child(8) {
+  width: 6%;
+}
+.window-reporte__table th:nth-child(9),
+.window-reporte__table td:nth-child(9) {
+  width: 6%;
+}
+.window-reporte__table th:nth-child(10),
+.window-reporte__table td:nth-child(10) {
+  width: 9%;
+}
+
+

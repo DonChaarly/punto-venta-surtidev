@@ -1,0 +1,39 @@
+<form (submit)="guardarCliente()" [noValidate]="false">
+  <div class="window-popup" *ngIf="cliente">
+
+
+    <div class="window-popup__client window-popup__topic" (keyup)="eventokey($event)">
+      <div class="window-popup__header">
+        <div class="window-popup__header-title">
+          Detalles Cliente
+        </div>
+        <i class="fa-solid fa-rectangle-xmark" [routerLink]="['../']"></i>
+      </div>
+      <div class="window-big-icon">
+        <i class="fa-solid fa-user-tie"></i>
+      </div>
+      <div class="window-popup__topic-data">
+        <div class="key-client">
+          <label for="key">Clave: </label>
+          <input type="text" name="key" id="key-client" [(ngModel)]="cliente.codigo" autocomplete="off" #inputKey  required>
+        </div>
+        <div class="name-client">
+          <label for="name">Nombre: </label>
+          <input type="text" name="name" id="name-client" [(ngModel)]="cliente.nombre" autocomplete="off" required>
+        </div>
+        <div class="tel-client">
+          <label for="tel">Telefono: </label>
+          <input type="number" name="tel" id="tel-client" [(ngModel)]="cliente.telefono" autocomplete="off">
+        </div>
+        <div class="adress-client">
+          <label for="adress">Direccion: </label>
+          <input type="text" name="adress" id="adress-client" [(ngModel)]="cliente.direccion" autocomplete="off">
+        </div>
+      </div>
+      <div class="window-popup__buttons">
+        <input type="submit" value="Guardar" role="button">
+        <input type="button" value="Cancelar" [routerLink]="['../']" >
+      </div>
+    </div>
+  </div>
+</form>

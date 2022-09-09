@@ -1,0 +1,169 @@
+<div class="contaniner-configuraciones">
+  <header class="container-configuraciones__header">
+
+    <div class="header__title">
+
+      <div class="header__title-back">
+        <a [routerLink]="['/menu']"><i class="fa-solid fa-arrow-left-long"></i></a>
+      </div>
+      <h2>Configuraciones</h2>
+      <img src="assets/logo_tienda.png" alt="Logo Tienda">
+      <p>La Surtidora</p>
+
+    </div>
+    <!----------------BARRA DE NAVEGACION-------------------------->
+    <nav>
+      <div class="container-configuraciones__nav--active" id="empresa" (click)="cambiarVentana('empresa')">
+        <i class="fa-solid fa-store"></i>
+        <p>Empresa</p>
+      </div>
+      <div class="container-configuraciones__nav" id="rol" (click)="cambiarVentana('rol')">
+        <i class="fa-solid fa-user-doctor"></i>
+        <p>Roles</p>
+      </div>
+      <div class="container-configuraciones__nav" id="empleado" (click)="cambiarVentana('empleado')">
+        <i class="fa-solid fa-briefcase"></i>
+        <p>Empleados</p>
+      </div>
+      <div class="container-configuraciones__nav" id="usuario" (click)="cambiarVentana('usuario')">
+        <i class="fa-solid fa-users"></i>
+        <p>Usuarios</p>
+      </div>
+    </nav>
+    <!------BUTONES DE ACCION-->
+    <div class="container-configuraciones__buttons" id="nav">
+      <div (click)="crearObjeto()">
+        <p>Agregar</p>
+        <i class="fa-solid fa-circle-plus"></i>
+      </div>
+      <div (click)="abrirDetalles()">
+        <p>Editar</p>
+        <i class="fa-solid fa-pen-to-square"></i>
+      </div>
+      <div (click)="eliminarObjeto()">
+        <p>Eliminar</p>
+        <i class="fa-solid fa-circle-xmark"></i>
+      </div>
+    </div>
+  </header>
+  <article>
+
+    <!----------------------   Configuraciones Datos de la empresa   --------------------------------->
+    <form (submit)="guardarDatosEmpresa()" >
+      <div class="visible" id="divempresa">
+        <div class="section-company section__data">
+          <div>
+            <label for="company-name">Nombre de la empresa: </label>
+            <input type="text" name="company-name" id="company-name" [(ngModel)]="empresa.nombre" autocomplete="off">
+          </div>
+          <div>
+            <label for="company-address">Direccion: </label>
+            <input type="text" name="company-address" id="company-address" [(ngModel)]="empresa.direccion" autocomplete="off">
+          </div>
+          <div>
+            <label for="company-city">Ciudad: </label>
+            <input type="text" name="company-city" id="company-city" [(ngModel)]="empresa.ciudad" autocomplete="off">
+          </div>
+          <div>
+            <label for="company-state">Estado: </label>
+            <input type="text" name="company-state" id="company-state" [(ngModel)]="empresa.estado" autocomplete="off">
+          </div>
+          <div>
+            <label for="company-cp">Codigo Postal: </label>
+            <input type="text" name="company-cp" id="company-cp" [(ngModel)]="empresa.codigoPostal" autocomplete="off">
+          </div>
+          <div>
+            <label for="company-tel">Telefono: </label>
+            <input type="number" name="company-tel" id="company-tel" [(ngModel)]="empresa.telefono" autocomplete="off">
+          </div>
+          <div>
+            <label for="company-email">Email: </label>
+            <input type="text" name="company-email" id="company-email" [(ngModel)]="empresa.email" autocomplete="off">
+          </div>
+          <div class="window-popup__buttons">
+            <input type="submit" value="Guardar" role="button">
+          </div>
+        </div>
+      </div>
+    </form>
+    <!----------------------   CONFIGURACIONES ROLES  --------------------------------->
+    <div class="gone" id="divrol">
+      <section class="section__data">
+        <label for="configuraciones-rol">Rol: </label>
+        <input type="text" name="configuraciones-rol" id="configuraciones-rol" [(ngModel)]="key" autocomplete="off" (keyup)="eventoKeyPrincipal($event)">
+      </section>
+      <section>
+        <div class="section__table">
+          <div class="section__table-head">
+            <b>Nombre</b>
+          </div>
+          <div class="section__table-data" *ngFor="let rol of roles; let i = index" id="trinputrol{{i}}" (click)="siguienteFoco(i)" (dblclick)="dobleClick(i)" >
+            <p>{{rol.nombre}}
+              <input class="listener" type="text" id="inputrol{{i}}" name="{{i}}" class="listener" value="{{i}}" autocomplete="off"
+              (focus)="seleccionarFila($event)"
+              (blur)="deseleccionarFila($event)"
+              (keyup)="inputKeypress($event, i)">
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!----------------------   Configuracines Empleados  --------------------------------->
+    <div class="gone" id="divempleado">
+      <section class="section__data">
+        <label for="configuraciones-employee">Empleado: </label>
+        <input type="text" name="configuraciones-employee" id="configuraciones-employee" [(ngModel)]="key" autocomplete="off" (keyup)="eventoKeyPrincipal($event)">
+      </section>
+      <section>
+        <div class="section__table">
+          <div class="section__table-head">
+            <b>Nombre</b>
+            <b>Telefono</b>
+            <b>Puesto</b>
+            <b>Fecha Ingreso</b>
+          </div>
+          <div class="section__table-data" *ngFor="let empleado of empleados; let i = index" id="trinputempleado{{i}}" (click)="siguienteFoco(i)" (dblclick)="dobleClick(i)" >
+            <p>{{empleado.nombre}}
+              <input class="listener" type="text" id="inputempleado{{i}}" name="{{i}}" class="listener" value="{{i}}" autocomplete="off"
+              (focus)="seleccionarFila($event)"
+              (blur)="deseleccionarFila($event)"
+              (keyup)="inputKeypress($event, i)">
+            </p>
+            <p>{{empleado.telefono}}</p>
+            <p>{{empleado.puesto}}</p>
+            <p>{{empleado.fechaIngreso}}</p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!----------------------   Configuracines Usuarios  --------------------------------->
+    <div class="gone" id="divusuario">
+      <section class="section__data">
+        <label for="configuraciones-user">Usuario: </label>
+        <input type="text" name="configuraciones-usuario" id="configuraciones-usuario" [(ngModel)]="key" autocomplete="off" (keyup)="eventoKeyPrincipal($event)">
+      </section>
+      <section>
+        <div class="section__table">
+          <div class="section__table-head">
+            <b>Nombre</b>
+            <b>Rol</b>
+          </div>
+          <div class="section__table-data" *ngFor="let usuario of usuarios; let i = index" id="trinputusuario{{i}}" (click)="siguienteFoco(i)" (dblclick)="dobleClick(i)" >
+            <p>{{usuario.username}}
+              <input class="listener" type="text" id="inputusuario{{i}}" name="{{i}}" class="listener" value="{{i}}" autocomplete="off"
+              (focus)="seleccionarFila($event)"
+              (blur)="deseleccionarFila($event)"
+              (keyup)="inputKeypress($event, i)">
+            </p>
+            <p>{{usuario.rol.nombre}}</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </article>
+
+</div>
+<router-outlet></router-outlet>
+
+

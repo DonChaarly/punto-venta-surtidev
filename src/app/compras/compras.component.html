@@ -1,0 +1,127 @@
+<form autocomplete="off">
+  <div class="container-compras" *ngIf="listo && compra.usuario">
+    <!------------Cabecera de la pagina-------------->
+    <header class="container-compras__header">
+
+      <div class="header__title">
+
+        <div class="header__title-back">
+          <a [routerLink]="['/menu']"><i class="fa-solid fa-arrow-left-long"></i></a>
+        </div>
+        <h2>Compras</h2>
+        <img src="assets/logo_tienda.png" alt="Logo Tienda">
+        <p>La Surtidora</p>
+
+      </div>
+      <!------------------------BARRA DE BONOTES-------------------------------->
+      <nav>
+
+        <div (click)="buscarProducto()">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <p>Buscar (Enter)</p>
+        </div>
+        <div (click)="eliminarArticulo()">
+          <i class="fa-solid fa-rectangle-xmark"></i>
+          <p>Eliminar (Delete)</p>
+        </div>
+        <div (click)="cobrarCompra()">
+          <i class="fa-solid fa-cash-register"></i>
+          <p>Cobrar (Esc)</p>
+        </div>
+        <div (click)="crearProducto()">
+          <i class="fa-solid fa-circle-plus"></i>
+          <p>Crear prod. (+)</p>
+        </div>
+        <div (click)="editarProducto()">
+          <i class="fa-solid fa-pen-to-square"></i>
+          <p>Editar prod. (*)</p>
+        </div>
+        <div (click)="compraEnEspera()">
+          <i class="fa-solid fa-right-to-bracket"></i>
+          <p>En espera</p>
+        </div>
+        <div (click)="abrirEnEspera()">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <p>Buscar en Espera</p>
+        </div>
+
+      </nav>
+
+    </header>
+    <!----------------------SECCION PRINCIPAL----------------------------------->
+    <article class="container-compras__article">
+      <!--------Seccion datos --------------->
+      <section class="article-data">
+
+        <div class="article-data__superior">
+          <div class="article-data__superior-prov">
+            <label for="prov">Provedor: </label>
+            <select name="prov" id="prov" [(ngModel)]="provedor" (change)="cambiarProvedor()">
+              <option value="0" selected>Sin Provedor</option>
+              <option *ngFor="let provedor of provedores" value="{{provedor.idProvedores}}">{{provedor.nombre}}</option>
+            </select>
+          </div>
+          <div class="article-data__superior-folio">
+            <label for="folio">Folio: </label>
+            <input type="text" name="folio" id="folio" [(ngModel)]="compra.folio" disabled autocomplete="off">
+          </div>
+          <div class="article-data__superior-date">
+            <label for="date">Fecha: </label>
+            <input type="date" name="date" id="date" [(ngModel)]="compra.fecha" disabled autocomplete="off">
+          </div>
+        </div>
+
+        <div class="article-data__inferior">
+          <div class="article-data__inferior-key">
+            <label for="key">Codigo: </label>
+            <input type="text" name="key" id="key" [(ngModel)]="key" (keyup)="encontrarArticulos($event)" autofocus #inputKey onfocus="this.select()" autocomplete="off">
+          </div>
+          <!--<div class="article-data__inferior-product">
+            <label for="product">Producto</label>
+            <input type="text" name="product" id="product" disabled [(ngModel)]="coincidence" autocomplete="off">
+          </div>-->
+        </div>
+
+
+      </section>
+
+      <!-----------Seccion tabla ------------------>
+      <section class="article-products">
+
+        <div class="article-products__table">
+          <table>
+            <tr>
+              <th>Cantidad</th>
+              <th>Pruducto</th>
+              <th>Precio Comp.</th>
+              <th>Total</th>
+            </tr>
+            <tr *ngFor="let articuloDetalles of detallescomprasarticulos; let i = index" id="trinput{{i}}" (click)="siguienteFoco(i)" (dblclick)="dobleClick(i)" >
+              <td>{{articuloDetalles.cantidad}}
+                <input type="text" id="input{{i}}" name="{{i}}" class="listener" value="{{i}}" autocomplete="off"
+                (focus)="seleccionarFila($event)"
+                (blur)="deseleccionarFila($event)"
+                (keyup)="inputKeypress($event, i)">
+              </td>
+              <td>{{articuloDetalles.articulo.nombre}}</td>
+              <td>{{articuloDetalles.precioCompra}}</td>
+              <td>{{articuloDetalles.importe}}</td>
+            </tr>
+          </table>
+        </div>
+
+      </section>
+      <section class="article-total">
+        <div class="article-total__cajero">
+          <label for="cajero">Cajero: </label>
+          <input type="text" name="cajero" id="cajero" [(ngModel)]="compra.usuario.username" disabled autocomplete="off">
+        </div>
+        <div class="article-total__total">
+          <label for="total">Total: </label>
+          <input type="text" name="total" id="total" value="${{total()}}" disabled autocomplete="off">
+        </div>
+      </section>
+    </article>
+  </div>
+</form>
+<router-outlet></router-outlet>

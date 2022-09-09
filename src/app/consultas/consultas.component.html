@@ -1,0 +1,139 @@
+<div class="contaniner-consultas" *ngIf="usuarios">
+  <!----------Cabecero de la pgina--------------->
+  <header class="container-consultas__header">
+
+    <div class="header__title">
+
+      <div class="header__title-back">
+        <a [routerLink]="['/menu']"><i class="fa-solid fa-arrow-left-long"></i></a>
+      </div>
+      <h2>Consultas</h2>
+      <img src="assets/logo_tienda.png" alt="Logo Tienda">
+      <p>La Surtidora</p>
+
+    </div>
+    <!----------------------BARRA DE BOTONES------------------------->
+    <nav>
+
+      <div class="container-consultas__nav--active" id="ventas" (click)="cambiarEstiloActivo('ventas')">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <p>Ventas</p>
+      </div>
+      <div class="container-consultas__nav" id="compras" (click)="cambiarEstiloActivo('compras')">
+        <i class="fa-solid fa-truck-moving"></i>
+        <p>Compras</p>
+      </div>
+
+    </nav>
+
+  </header>
+  <!---------------------------SECCION PRINCIPAL----------------------------------->
+  <article class="article-consultas">
+    <!-------Seccion de datos-------->
+    <div class="article-consultas__date1" *ngIf="rol.cambiarFechaConsulta; else sinFecha1">
+      <label for="consultas-date1">Fecha de inicio: </label>
+      <input type="date" name="consultas-date1" id="consultas-date1" [(ngModel)]="fechaInicio" (change)="eventoKeyPrincipal('Enter')">
+    </div>
+    <div class="article-consultas__date2" *ngIf="rol.cambiarFechaConsulta; else sinFecha2">
+      <label for="consultas-date1">Fecha de fin: </label>
+      <input type="date" name="consultas-date2" id="consultas-date2" [(ngModel)]="fechaFin" (change)="eventoKeyPrincipal('Enter')">
+    </div>
+    <ng-template #sinFecha1>
+      <div class="article-consultas__date1">
+        <label for="consultas-date1">Fecha de inicio: </label>
+        <input type="date" name="consultas-date1" id="consultas-date1" [(ngModel)]="fechaInicio" disabled>
+      </div>
+    </ng-template>
+    <ng-template #sinFecha2>
+      <div class="article-consultas__date2" >
+        <label for="consultas-date1">Fecha de fin: </label>
+        <input type="date" name="consultas-date2" id="consultas-date2" [(ngModel)]="fechaFin" disabled>
+      </div>
+    </ng-template>
+
+    <div class="article-consultas__cajas">
+      <label for="consultas-caja">Cajero: </label>
+      <select name="consultas-caja" id="consultas-caja" [(ngModel)]="usuarioSelec">
+        <option value="0" selected>Todas</option>
+        <option *ngFor="let usuario of usuarios; let i = index" value="{{usuario.idUsuarios}}">{{usuario.username}}</option>
+      </select>
+    </div>
+    <div class="article-consultas__findby">
+      <label for="consultas-findby">Buscar por: </label>
+      <select name="consultas-findby" id="consultas-findby" [(ngModel)]="findBy">
+        <option value="article" selected>Articulo</option>
+        <option value="folio" >Folio</option>
+        <option value="client" >{{clienteProvedor}}</option>
+        <option value="total" >Total</option>
+      </select>
+    </div>
+    <div class="article-consultas__finder">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" name="consultas-finder" id="consultas-finder" [(ngModel)]="strToSearch" (keyup)="eventoKeyPrincipal($event)" #consultasFinder autocomplete="off">
+    </div>
+    <!------------Seccion Tabla-------------->
+    <div class="article-consultas__table">
+      <table *ngIf="ventasActivo == true; else comprasActivo">
+        <tr>
+          <th>Fecha</th>
+          <th>Folio</th>
+          <th>Cliente</th>
+          <th>Total</th>
+          <th *ngIf="rol.cancelarVenta">Cancelar Venta</th>
+        </tr>
+        <tr *ngFor="let venta of ventas; let i = index" id="trinput{{i}}" (click)="siguienteFoco(i)" (dblclick)="dobleClick(i)" >
+          <td>{{venta.fecha}}
+            <input class="listener" type="text" id="input{{i}}" name="{{i}}" class="listener" value="{{i}}" autocomplete="off"
+            (focus)="seleccionarFila($event)"
+            (blur)="deseleccionarFila($event)"
+            (keyup)="inputKeypress($event, i)">
+          </td>
+          <td>{{venta.folio}}</td>
+          <td>{{venta.cliente.nombre}}</td>
+          <td>{{venta.total}}</td>
+          <td *ngIf="rol.cancelarVenta"><input type="button" value="Calcelar" class="delete" (click)="cancelarVentaCompra(venta.folio)"></td>
+        </tr>
+      </table>
+      <ng-template #comprasActivo>
+        <table>
+          <tr>
+            <th>Fecha</th>
+            <th>Folio</th>
+            <th>Provedor</th>
+            <th>Total</th>
+            <th *ngIf="rol.cancelarCompra">Cancelar Compra</th>
+          </tr>
+          <tr *ngFor="let compra of compras; let i = index" id="trinput{{i}}" (click)="siguienteFoco(i)" (dblclick)="dobleClick(i)" >
+            <td>{{compra.fecha}}
+              <input type="text" id="input{{i}}" name="{{i}}" class="listener" value="{{i}}" autocomplete="off"
+              (focus)="seleccionarFila($event)"
+              (blur)="deseleccionarFila($event)"
+              (keyup)="inputKeypress($event, i)">
+            </td>
+            <td>{{compra.folio}}</td>
+            <td>{{compra.provedor.nombre}}</td>
+            <td>{{compra.total}}</td>
+            <td *ngIf="rol.cancelarVenta"><input type="button" value="Calcelar" class="delete" (click)="cancelarVentaCompra(compra.folio)"></td>
+          </tr>
+        </table>
+      </ng-template>
+
+    </div>
+    <section class="article-paginator">
+      <div class="" id="arrowLeftConsulta" (click)="masMenosUnaPagina(true)">
+        <i class="fa-solid fa-circle-arrow-left"></i>
+      </div>
+      <div>
+        <input type="number" [(ngModel)]="page" (keyup)="cambiarPagina($event, page)">
+        <input type="number" [(ngModel)]="totalPages" disabled>
+      </div>
+      <div class="arrowActive" id="arrowRightConsulta" (click)="masMenosUnaPagina(false)">
+        <i class="fa-solid fa-circle-arrow-right"></i>
+      </div>
+
+    </section>
+  </article>
+</div>
+<router-outlet></router-outlet>
+
+

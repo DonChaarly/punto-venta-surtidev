@@ -1,0 +1,45 @@
+<form (submit)="guardarProvedor()" [noValidate]="false">
+  <div class="window-popup">
+    <div class="window-popup__prov window-popup__topic" (keyup)="eventokey($event)">
+      <div class="window-popup__header">
+        <div class="window-popup__header-title">
+          Detalles provedor
+        </div>
+        <i class="fa-solid fa-rectangle-xmark" [routerLink]="['../']"></i>
+      </div>
+      <div class="window-big-icon">
+        <i class="fa-solid fa-user-tie"></i>
+      </div>
+      <div class="window-popup__topic-data">
+        <div class="key-prov">
+          <label for="key">Clave: </label>
+          <input type="text" name="key" id="key-prov" [(ngModel)]="provedor.codigo" autocomplete="off" #inputKey required>
+        </div>
+        <div class="name-prov">
+          <label for="name">Nombre: </label>
+          <input type="text" name="name" id="name-prov" [(ngModel)]="provedor.nombre" autocomplete="off" required>
+        </div>
+        <div class="tel-prov">
+          <label for="tel">Telefono: </label>
+          <input type="number" name="tel" id="tel-prov" [(ngModel)]="provedor.telefono" autocomplete="off">
+        </div>
+        <div class="rfc-prov">
+          <label for="rfc">RFC: </label>
+          <input type="text" name="rfc" id="rfc-prov" [(ngModel)]="provedor.rfc" autocomplete="off">
+        </div>
+        <div class="adress-prov">
+          <label for="adress">Direccion: </label>
+          <input type="text" name="adress" id="adress-prov" [(ngModel)]="provedor.direccion" autocomplete="off">
+        </div>
+        <div class="email-prov">
+          <label for="email">Email: </label>
+          <input type="email" name="email" id="email-prov" [(ngModel)]="provedor.email" autocomplete="off">
+        </div>
+      </div>
+      <div class="window-popup__buttons">
+        <input type="submit" value="Guardar" role="button">
+        <input type="button" value="Cancelar" [routerLink]="['../']" >
+      </div>
+    </div>
+  </div>
+</form>

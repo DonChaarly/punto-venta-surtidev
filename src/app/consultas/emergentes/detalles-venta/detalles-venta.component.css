@@ -1,0 +1,136 @@
+.window-popup{
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--gray-transparent);
+  height: 100vh;
+  width: 100vw;
+  font-family: var(--font-text);
+  font-size: 20px;
+}
+
+
+.window-popup__details{
+  display: grid;
+  grid-template-rows: 40px 18% 52% 23%;
+  width: 70%;
+  height: 70%;
+  background-color: var(--white);
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+  overflow: hidden;
+}
+
+.window-popup__header{
+  background-color: var(--blue-light);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  display: grid;
+  grid-template-columns: 1fr 50px;
+  align-items: center;
+  justify-items: center;
+  font-size: 25px;
+}
+.window-popup__header-title{
+  color: var(--white);
+}
+.window-popup__header i{
+  color: var(--red);
+  cursor: pointer;
+}
+.window-popup__header i:hover{
+  transform: scale(1.2);
+}
+
+.window-popup__details-data{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  padding: 10px 20px;
+
+}
+.window-popup__details-data input{
+  width: 50%;
+  border: none;
+  border-bottom: 2px solid;
+  background-color: var(--white);
+}
+
+.window-popup__details-table{
+  width: 97%;
+  height: 95%;
+  align-self: center;
+  justify-self: center;
+  border-radius: 5px;
+  border: 3px solid var(--blue-strong);
+  overflow: auto;
+}
+.window-popup__details-table table{
+  width: 100%;
+}
+.window-popup__details-table th{
+  background-color: var(--blue-strong);
+  color: var(--white);
+  position: sticky;
+  top: 0;
+  right: 0;
+}
+.window-popup__details-table tr{
+  background-color: var(--gray-light);
+  height: 30px;
+  color: var(--black);
+  text-align: center;
+}
+
+.window-popup__details-total{
+  width: 97%;
+  height: 90%;
+  justify-self: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-self: center;
+  font-size: 35px;
+}
+.window-popup__details-total .total{
+  width: 100%;
+  height: fit-content;
+  align-self: center;
+  justify-self: center;
+  display: grid;
+  grid-template-columns: 90px 1fr;
+}
+.window-popup__details-total .total label{
+  align-self: center;
+}
+.window-popup__details-total .total input{
+  width: 90%;
+  height: 80px;
+  text-align: center;
+  background-color: var(--black);
+  color: var(--green);
+  border-radius: 5px;
+  font-size: 55px;
+}
+
+.window-popup__details-total .button input{
+  font-size:20px;
+  padding: 5px;
+  width: fit-content;
+  background-color: var(--blue-light);
+  color: var(--white);
+  border-radius: 5px;
+  box-shadow: 0 0 5px var(--black);
+  text-align: center;
+  overflow: hidden;
+  cursor: pointer;
+}
+.window-popup__details-total .button input:hover{
+  outline: 4px solid var(--blue-strong);
+}
+
+

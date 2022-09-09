@@ -1,0 +1,86 @@
+.container_login{
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--yellow);
+  position: relative;
+}
+
+.form-login{
+  background-color: var(--gray);
+  padding: 20px;
+  width: 600px;
+  height: 600px;
+  border-radius: 40px;
+  font-family: var(--font-text);
+  font-size: 25px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+}
+.form-login__icon img{
+  width: 200px;
+  height: 200px;
+  filter: drop-shadow(0 0 5px #000);
+}
+.form-login__icon p{
+  font-family: var(--font-icono);
+  color: var(--red);
+  text-align: center;
+  font-size: 40px;
+  font-weight: 900;
+  text-shadow: 0 0 10px #000;
+}
+
+.form-login__data {
+  align-self: flex-start;
+  margin: 0 25px;
+
+}
+.form-login__data input {
+  background: linear-gradient(to top, var(--gray-strong), var(--gray) );
+  border: none;
+  border-bottom: 5px solid var(--white);
+  width: 500px;
+  height: 70px;
+  color: var(--gray-light);
+  padding: 0 10px
+
+}
+.form-login__data input::placeholder {
+  color: var(--gray-light);
+}
+.form-login__data i{
+  margin: 0 9px;
+  color: var(--gray-light);
+
+}
+.form-login__data input:focus{
+  outline: none;
+  background: var(--gray-medium);
+  color: var(--gray-strong);
+}
+
+.form-login button{
+  width: 300px;
+  height: 50px;
+  background-color: var(--blue-light);
+  color: var(--gray-light);
+  box-shadow: 0 0 5px #000;
+  transition: width 0.3s;
+  cursor: pointer;
+}
+.form-login button:hover{
+  width: 350px;
+}
+
+
+
+

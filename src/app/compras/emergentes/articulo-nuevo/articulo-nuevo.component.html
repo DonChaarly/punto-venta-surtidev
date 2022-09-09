@@ -1,0 +1,77 @@
+<form [noValidate]="false" *ngIf="articulo">
+  <div class="window-popup" (keyup)="eventoKey($event)">
+    <div class="window-popup__new" *ngIf="articulo">
+      <div class="window-popup__header">
+        <div class="window-popup__header-title">
+          Detalles Articulo
+        </div>
+        <i class="fa-solid fa-rectangle-xmark" (click)="regresarVentanaAnterioro()"></i>
+      </div>
+      <div class="window-popup__new-key">
+        <label for="key">Codigo: </label>
+        <input type="text" name="key" id="key-new" [(ngModel)]="articulo.codigo" required autocomplete="off">
+      </div>
+      <div class="window-popup__new-name">
+        <label for="name">Nombre: </label>
+        <input type="text" name="name" id="name-new" [(ngModel)]="articulo.nombre" required autocomplete="off">
+      </div>
+      <div class="window-popup__new-category">
+        <label for="category">Categoria: </label>
+        <select name="category" id="category-edit" [(ngModel)]="categoria" (change)="cambiarCategoria()" >
+          <option *ngFor="let categoria of categorias; let i = index" value="{{i}}">{{categoria.nombre}}</option>
+        </select>
+        <i class="fas fa-plus-circle" [routerLink]="['./nueva-categoria']"></i>
+        <label for="departament">Departamento: </label>
+        <input type="text" name="departament" id="departament-new" *ngIf="articulo.categoria" value="{{articulo.categoria.departamento.nombre}}" autocomplete="off">
+      </div>
+      <div class="window-popup__new-sale-price">
+        <p>Ultimos Precios de venta</p>
+        <label for="price1-sale">Precio 1</label>
+        <input class="disabled" disabled type="number" name="price1-sale" id="price1-sale-new" [(ngModel)]="articulo.precio1" autocomplete="off" >
+        <label for="price2-sale">Precio 2</label>
+        <input class="disabled" disabled type="text" name="price2-sale" id="price2-sale-new" [(ngModel)]="articulo.precio2" autocomplete="off">
+      </div>
+      <div class="window-popup__new-ult-buy-price">
+        <p>Ultimos Precios de compra</p>
+        <label for="ult-buy-price">Ultimo: </label>
+        <input class="disabled" disabled type="number" name="ult-buy-price" id="ult-buy-price-new" [(ngModel)]="articulo.ultimoPrecioCompra" autocomplete="off">
+        <label for="prom-buy-price">Promedio: </label>
+        <input class="disabled" disabled type="number" name="prom-buy-price" id="prom-buy-price-new" [(ngModel)]="promedio" autocomplete="off">
+      </div>
+      <div class="window-popup__new-stock">
+        <label for="stock">Existencias</label>
+        <input class="disabled" disabled type="text" name="stock" id="stock-new" [(ngModel)]="articulo.existencias" autocomplete="off">
+      </div>
+      <div class="window-popup__new-amount">
+        <label for="amount">Cantidad: </label>
+        <input type="number" name="amount" id="amount-new" [(ngModel)]="cantidadNueva" required autocomplete="off" #amountNew >
+      </div>
+      <div class="window-popup__new-price">
+        <label for="price">Precio de compra: $ </label>
+        <input type="number" name="price" id="price-new" [(ngModel)]="precioCompraNuevo" autocomplete="off">
+      </div>
+      <div class="window-popup__new-profit1">
+        <label for="profit1">Ganancia 1 %</label>
+        <input type="number" name="profit1" id="profit1-new" value="{{ganancia1()}}" disabled class="inputDisabled" autocomplete="off">
+      </div>
+      <div class="window-popup__new-profit2">
+        <label for="profit2">Ganancia 2 %</label>
+        <input type="number" name="profit2" id="profit2-new" value="{{ganancia2()}}" disabled class="inputDisabled" autocomplete="off">
+      </div>
+      <div class="window-popup__new-price1">
+        <label for="price1">Precio 1: $ </label>
+        <input type="number" name="price1" id="price1-new" [(ngModel)]="precio1Nuevo" required autocomplete="off">
+      </div>
+      <div class="window-popup__new-price2">
+        <label for="price2">Precio 2: $</label>
+        <input type="number" name="price2" id="price2-new" [(ngModel)]="precio2Nuevo" autocomplete="off">
+      </div>
+      <div class="window-popup__buttons">
+        <input type="submit" value="Guardar" role="button" (click)="guardarArticulo()">
+        <input type="button" value="Cancelar" (click)="regresarVentanaAnterioro()" >
+      </div>
+    </div>
+  </div>
+</form>
+<router-outlet></router-outlet>
+

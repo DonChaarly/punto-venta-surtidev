@@ -1,0 +1,17 @@
+<form (submit)="eliminarArticulo()" >
+  <div class="window-popup" *ngIf="articulo">
+    <div class="window-popup__confirm">
+      <div class="window-popup__header" [routerLink]="['../']">
+        <i class="fa-solid fa-rectangle-xmark"></i>
+      </div>
+      <h3>Seguro desea eliminar el articulo</h3>
+      <h3>{{articulo.nombre}}?</h3>
+      <input type="hidden"  value="hola" autocomplete="off">
+      <div class="window-popup__buttons">
+        <input type="submit" value="Aceptar" role="button" >
+        <input type="button" value="Cancelar" [routerLink]="['../']" #inputHidden>
+      </div>
+    </div>
+  </div>
+
+</form>
